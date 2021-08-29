@@ -1,5 +1,6 @@
 using System;
 using Kustomaur.Dashboard;
+using Kustomaur.Dashboard.DashboardParts;
 using Kustomaur.Dashboard.Implementation;
 using Xunit;
 
@@ -24,7 +25,7 @@ namespace Kustomaur.Builder.Tests
         }
         
         [Fact]
-        public void CanCreateADashboardWithChartsBuilder()
+        public void CanCreateADashboardWithPartsBuilder()
         {
             //arrange
             var subscriptionId = Guid.NewGuid().ToString();
@@ -32,14 +33,15 @@ namespace Kustomaur.Builder.Tests
             var name = Guid.NewGuid().ToString();
 
 
-            var chartsBuilder = new DashboardPartsBuilder();
-            chartsBuilder.AddPart()
-            
             var dashboard = new DashboardBuilder()
                 .WithSubscription(subscriptionId)
                 .WithResourceGroup(resourceGroup)
                 .WithName(name)
                 .Build();
+            
+            var chartsBuilder = new DashboardPartsBuilder(dashboard);
+            chartsBuilder.AddPart(new MarkdownPart(title:"My first thing").GeneratePart());
+
                  
         }
     }

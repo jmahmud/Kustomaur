@@ -80,7 +80,7 @@ namespace Kustomaur.Dashboard
             Dashboard.Name = Name;
             
             // Run each builder
-            _builders.ForEach(builder => builder.Build(Dashboard));
+//            _builders.ForEach(builder => builder.Build(Dashboard));
             
             return Dashboard;
         }

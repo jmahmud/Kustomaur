@@ -13,5 +13,28 @@ namespace Kustomaur.Models
         {
             Settings = new PartMetadataSettings();
         }
+
+        public PartMetadata WithType(string type)
+        {
+            Type = type;
+            return this;
+        }
+        
+        public PartMetadata WithAsset(Asset asset)
+        {
+            Asset = asset;
+            return this;
+        }
+        
+        public PartMetadata AddInput(Input input)
+        {
+            if (Inputs == null)
+            {
+                Inputs = new List<Input>();
+            }
+            
+            Inputs.Add(input);
+            return this;
+        }
     }
 }
