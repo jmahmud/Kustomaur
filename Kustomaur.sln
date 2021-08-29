@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kustomaur.Models", "src\Kustomaur.Models\Kustomaur.Models.csproj", "{9DE7E72A-4AE5-4123-B205-A7360CEF2D30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kustomaur.Models.Tests", "tests\Kustomaur.Models.Tests\Kustomaur.Models.Tests.csproj", "{4544108D-E7F3-498A-917B-90BC5831E26C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4CED4C06-3BB0-4495-A92F-4132BD98B565}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{6AE7C222-993C-446E-A27A-92247BD826D9}"
+ProjectSection(SolutionItems) = preProject
+	Examples\example2.json = Examples\example2.json
+	Examples\example1.json = Examples\example1.json
+EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kustomaur.Builder", "src\Kustomaur.Builder\Kustomaur.Builder.csproj", "{D7129FA8-2BE1-4CB4-A5CC-35048FEDB5FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kustomaur.Builder.Tests", "tests\Kustomaur.Builder.Tests\Kustomaur.Builder.Tests.csproj", "{2D145FD9-7344-4892-A815-07302B2F7CC7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9DE7E72A-4AE5-4123-B205-A7360CEF2D30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DE7E72A-4AE5-4123-B205-A7360CEF2D30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DE7E72A-4AE5-4123-B205-A7360CEF2D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DE7E72A-4AE5-4123-B205-A7360CEF2D30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4544108D-E7F3-498A-917B-90BC5831E26C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4544108D-E7F3-498A-917B-90BC5831E26C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4544108D-E7F3-498A-917B-90BC5831E26C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4544108D-E7F3-498A-917B-90BC5831E26C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7129FA8-2BE1-4CB4-A5CC-35048FEDB5FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7129FA8-2BE1-4CB4-A5CC-35048FEDB5FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7129FA8-2BE1-4CB4-A5CC-35048FEDB5FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7129FA8-2BE1-4CB4-A5CC-35048FEDB5FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D145FD9-7344-4892-A815-07302B2F7CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D145FD9-7344-4892-A815-07302B2F7CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D145FD9-7344-4892-A815-07302B2F7CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D145FD9-7344-4892-A815-07302B2F7CC7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4544108D-E7F3-498A-917B-90BC5831E26C} = {4CED4C06-3BB0-4495-A92F-4132BD98B565}
+		{2D145FD9-7344-4892-A815-07302B2F7CC7} = {4CED4C06-3BB0-4495-A92F-4132BD98B565}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,2358 @@
+{
+  "lenses": {
+    "0": {
+      "order": 0,
+      "parts": {
+        "0": {
+          "position": {
+            "x": 0,
+            "y": 0,
+            "colSpan": 24,
+            "rowSpan": 1
+          },
+          "metadata": {
+            "inputs": [],
+            "type": "Extension/HubsExtension/PartType/MarkdownPart",
+            "settings": {
+              "content": {
+                "settings": {
+                  "content": "# CoP API Response Times and Counts",
+                  "title": "",
+                  "subtitle": "",
+                  "markdownSource": 1,
+                  "markdownUri": null
+                }
+              }
+            }
+          }
+        },
+        "1": {
+          "position": {
+            "x": 0,
+            "y": 1,
+            "colSpan": 24,
+            "rowSpan": 6
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "ComponentId",
+                "value": "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/Microsoft.Insights/components/${cop_api_ai_name}"
+              }
+            ],
+            "type": "Extension/AppInsightsExtension/PartType/AppMapGalPt",
+            "settings": {},
+            "asset": {
+              "idInputName": "ComponentId",
+              "type": "ApplicationInsights"
+            }
+          }
+        },
+        "2": {
+          "position": {
+            "x": 8,
+            "y": 7,
+            "colSpan": 8,
+            "rowSpan": 2
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/microsoft.insights/components/${cop_api_ai_name}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "54d56c91-18c9-47e0-b230-d3ae8b5eb06b",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "requests\n| where url contains \"name-verification\"\n| summarize Average=avg(duration), Percentile_95th=percentile(duration, 95), Percentile_99th=percentile(duration, 99)\n\n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "AnalyticsGrid",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "Analytics",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${cop_api_ai_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "PartTitle": "Overall Percentiles"
+              }
+            }
+          }
+        },
+        "3": {
+          "position": {
+            "x": 0,
+            "y": 9,
+            "colSpan": 8,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/microsoft.insights/components/${cop_api_ai_name}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "2152dbdd-46ef-418b-b707-4a63e91164ab",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "requests\n| where url contains \"name-verification\"\n| summarize average=avg(duration) by bin(timestamp, 1m)\n| render timechart with (ymin=0,ymax=5000,ytitle=\"Response Time (ms)\",title=\"CoP API (name-verification) Response Time Avg\")",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Line",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "CoP API (name-verification) Response Time Avg",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${cop_api_ai_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "average",
+                      "type": "real"
+                    }
+                  ],
+                  "splitBy": [],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "requests\n| where url contains \"name-verification\"\n| summarize average=avg(duration) by bin(timestamp, 1m)\n| extend Threshold=1500\n| render timechart with (ytitle=\"Response Time (ms)\",title=\"CoP API (name-verification) Response Time Avg\")\n\n",
+                "Dimensions": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "average",
+                      "type": "real"
+                    },
+                    {
+                      "name": "Threshold",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [],
+                  "aggregation": "Sum"
+                }
+              }
+            }
+          }
+        },
+        "4": {
+          "position": {
+            "x": 8,
+            "y": 9,
+            "colSpan": 8,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/microsoft.insights/components/${cop_api_ai_name}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "0cae7ae0-1251-4168-a013-fee96871ef53",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "requests\n| where url contains \"name-verification\"\n| summarize percentile=percentile(duration,95) by bin(timestamp, 1m)\n| extend Thresld=1500\n| render timechart with (ymin=0,ymax=10000,ytitle=\"Response Time (ms)\",title=\"CoP API (name-verification) Response Time 95th\")\n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Line",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "CoP API (name-verification) Response Time 95th",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${cop_api_ai_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "percentile",
+                      "type": "real"
+                    },
+                    {
+                      "name": "Thresld",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "requests\n| where url contains \"name-verification\"\n| summarize percentile=percentile(duration,95) by bin(timestamp, 1m)\n| extend Thresld=1500\n| render timechart with (ytitle=\"Response Time (ms)\",title=\"CoP API (name-verification) Response Time 95th\")\n\n"
+              }
+            }
+          }
+        },
+        "5": {
+          "position": {
+            "x": 16,
+            "y": 9,
+            "colSpan": 8,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/microsoft.insights/components/${cop_api_ai_name}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "5480af82-417d-4f9d-b315-12b9db138595",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "requests\n| where url contains \"name-verification\"\n| summarize percentile=percentile(duration,99) by bin(timestamp, 1m)\n| extend Thresld=1500\n| render timechart with (ymin=0,ymax=15000,ytitle=\"Response Time (ms)\",title=\"CoP API (name-verification) Response Time 99th\")\n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Line",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "CoP API (name-verification) Response Time 99th",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${cop_api_ai_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "percentile",
+                      "type": "real"
+                    },
+                    {
+                      "name": "Thresld",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "requests\n| where url contains \"name-verification\"\n| summarize percentile=percentile(duration,99) by bin(timestamp, 1m)\n| extend Thresld=1500\n| render timechart with (ytitle=\"Response Time (ms)\",title=\"CoP API (name-verification) Response Time 99th\")\n\n"
+              }
+            }
+          }
+        },
+        "6": {
+          "position": {
+            "x": 0,
+            "y": 14,
+            "colSpan": 13,
+            "rowSpan": 7
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/microsoft.insights/components/${cop_api_ai_name}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "2152dbdd-46ef-418b-b707-4a63e91164ab",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "requests\n| where url contains \"name-verification\"\n| summarize average=avg(duration) by bin(timestamp, 1m)\n| render timechart with (ymin=0,ymax=5000,ytitle=\"Response Time (ms)\",title=\"CoP API (name-verification) Response Time Avg\")",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Line",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "CoP API (name-verification) Response Time Avg",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${cop_api_ai_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "average",
+                      "type": "real"
+                    }
+                  ],
+                  "splitBy": [],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "let lastweek = ago(7d);\nlet now = now();\nrequests\n| where url contains \"name-verification\" and timestamp between (lastweek .. now)\n| summarize average=avg(duration), percentil95th=percentile(duration, 95), percentil99th=percentile(duration, 99) by bin(timestamp, 30m)\n| extend Threshold=1500\n| render timechart with (ytitle=\"Response Time (ms)\",title=\"CoP API (name-verification) Response Time 7d Rolling Avg\")\n\n",
+                "Dimensions": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "average",
+                      "type": "real"
+                    },
+                    {
+                      "name": "percentil95th",
+                      "type": "real"
+                    },
+                    {
+                      "name": "percentil99th",
+                      "type": "real"
+                    },
+                    {
+                      "name": "Threshold",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [],
+                  "aggregation": "Sum"
+                },
+                "IsQueryContainTimeRange": true
+              }
+            },
+            "filters": {
+              "MsPortalFx_TimeRange": {
+                "model": {
+                  "format": "utc",
+                  "granularity": "auto",
+                  "relative": "7d"
+                }
+              }
+            },
+            "partHeader": {
+              "title": "CoP API (name-verification) Response Time 7-Day Rolling Avg",
+              "subtitle": ""
+            }
+          }
+        },
+        "7": {
+          "position": {
+            "x": 13,
+            "y": 14,
+            "colSpan": 11,
+            "rowSpan": 7
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/microsoft.insights/components/${cop_api_ai_name}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "5501e8e4-c11a-42da-98ba-08ffb2aaacc3",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "// Response time buckets \n// Show how many requests are in each performance-bucket. \nrequests\n| summarize requestCount=sum(itemCount), maxDuration=max(duration) by performanceBucket\n| order by maxDuration asc // sort by average request duration\n| project-away maxDuration // no need to display avgDuration, we used it only for sorting results\n| render piechart with (title=\"CoP API (name-verification) Response Time (Bucketed)\")\n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Pie",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "CoP API (name-verification) Response Time (Bucketed)",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${cop_api_ai_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "performanceBucket",
+                    "type": "string"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "requestCount",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {}
+          }
+        },
+        "8": {
+          "position": {
+            "x": 0,
+            "y": 21,
+            "colSpan": 13,
+            "rowSpan": 6
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/microsoft.insights/components/${cop_api_ai_name}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "3f8134a5-0c51-4eab-b047-4d7d3828d160",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "// Request count trend \n// Chart Request count over the last day. \n// To create an alert for this query, click '+ New alert rule'\nrequests\n| where url contains \"name-verification\"\n| summarize totalCount=sum(itemCount) by bin(timestamp, 5m)\n| render areachart with (title=\"CoP API (name-verification) Request count (5min)\")\n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "StackedArea",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "CoP API (name-verification) Request count (5min)",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${cop_api_ai_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "totalCount",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {}
+          }
+        },
+        "9": {
+          "position": {
+            "x": 13,
+            "y": 21,
+            "colSpan": 11,
+            "rowSpan": 6
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/microsoft.insights/components/${cop_api_ai_name}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "874dc0d5-29ab-470f-8d89-9810e406af96",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "requests\n| where url contains \"name-verification\" and success == true\n| summarize sum(itemCount) by tostring(customDimensions[\"ParticipantName\"]), bin(timestamp, 5m) \n| render columnchart  with (title=\"Successful CoP Requests (1 min)\")\n\n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "StackedColumn",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "Successful CoP Requests (1 min)",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${cop_api_ai_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "sum_itemCount",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "customDimensions_ParticipantName",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {}
+          }
+        },
+        "10": {
+          "position": {
+            "x": 3,
+            "y": 27,
+            "colSpan": 18,
+            "rowSpan": 6
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/microsoft.insights/components/${cop_api_ai_name}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "1060e29a-139c-440f-ab12-992c18a378b6",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "requests\n| where url contains \"name-verification\" and success == true\n| summarize sum(itemCount) by tostring(customDimensions[\"ParticipantName\"]), bin(timestamp, 1m) \n| render piechart  with (title=\"Successful CoP Requests (1 min) by %\")\n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Pie",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "Successful CoP Requests (1 min) by %",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${cop_api_ai_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "customDimensions_ParticipantName",
+                    "type": "string"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "sum_itemCount",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {}
+          }
+        },
+        "11": {
+          "position": {
+            "x": 0,
+            "y": 33,
+            "colSpan": 13,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/microsoft.insights/components/${cop_api_ai_name}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "15083c83-3e8f-4eff-a611-5768a1a67e7a",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "requests\n| where url contains \"name-verification\" and success == true\n| extend match = case(tostring(customDimensions[\"Matched\"]) == \"True\", 'True Match',\ntostring(customDimensions[\"Matched\"]) == \"False\" and tostring(customDimensions[\"ReasonCode\"]) in (\"MBAM\", \"PAMM\"), \"Partial Match\",  \n 'False Match')\n| summarize sum(itemCount) by match\n| render piechart with (title=\"Name Match Results\")",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Pie",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "Name Match Results",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${cop_api_ai_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "match",
+                    "type": "string"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "sum_itemCount",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {}
+          }
+        },
+        "12": {
+          "position": {
+            "x": 13,
+            "y": 33,
+            "colSpan": 11,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/microsoft.insights/components/${cop_api_ai_name}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "4dc63ac0-e54f-4bf0-a11a-a60e651003bf",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "requests\n| where url contains \"name-verification\" and success == true and tostring(customDimensions[\"Matched\"]) == \"False\"\n| summarize sum(itemCount) by ReasonCode=tostring(customDimensions[\"ReasonCode\"])\n| extend ReasonCodeDescription = case(\nReasonCode == \"AC01\", \"Incorrect Account Number (AC01)\",\nReasonCode == \"ANNM\", \"Account Name does Not Match (ANNM)\",\nReasonCode == \"MBAM\", \"There may be a match on the Account Name (MBAM)\",\nReasonCode == \"BANM\", \"Business account, name matches (BANM)\",\nReasonCode == \"PANM\", \"Personal account, name matches (PANM)\",\nReasonCode == \"BAMM\", \"Business account, name may be a match (BAMM)\",\nReasonCode == \"PAMM\", \"Personal account, name may be a match (PAMM)\",\nReasonCode == \"PAMM\", \"Personal account, name may be a match (PAMM)\",\nReasonCode == \"ACNS\", \"Account type Not Supported for CoP (ACNS)\",\nReasonCode == \"OPTO\", \"Opted out of CoP Scheme (OPTO)\",\nReasonCode == \"SCNS\", \"Sort code not supported at endpoint (SCNS)\",\n \"N/A\")\n| project ReasonCodeDescription, sum_itemCount\n| render piechart  with (title=\"Partial/False Matshes: Reason Code Breakdown\")",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Pie",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "Partial/False Matshes: Reason Code Breakdown",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${cop_api_ai_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "ReasonCodeDescription",
+                    "type": "string"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "sum_itemCount",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {}
+          }
+        },
+        "13": {
+          "position": {
+            "x": 0,
+            "y": 38,
+            "colSpan": 24,
+            "rowSpan": 1
+          },
+          "metadata": {
+            "inputs": [],
+            "type": "Extension/HubsExtension/PartType/MarkdownPart",
+            "settings": {
+              "content": {
+                "settings": {
+                  "content": "# CoP API Failures",
+                  "title": "",
+                  "subtitle": "",
+                  "markdownSource": 1,
+                  "markdownUri": null
+                }
+              }
+            }
+          }
+        },
+        "14": {
+          "position": {
+            "x": 0,
+            "y": 39,
+            "colSpan": 13,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/microsoft.insights/components/${cop_api_ai_name}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "14cfac95-7cc3-40f3-b412-65d070475163",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P7D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "requests\n| where success == false\n| summarize failedRequestsCount=sum(itemCount) by bin(timestamp, 5m), resultCode, operation_Name\n| render timechart with (title=\"CoP API (name-verification) Failed Requests Count (5mins)\")\n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Line",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "CoP API (name-verification) Failed Requests Count (5mins)",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${cop_api_ai_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "failedRequestsCount",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "resultCode",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "PartSubTitle": "CoP API"
+              }
+            }
+          }
+        },
+        "15": {
+          "position": {
+            "x": 13,
+            "y": 39,
+            "colSpan": 11,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/microsoft.insights/components/${cop_api_ai_name}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "879bfc86-1e5e-4cae-915f-240cdf9502ae",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P7D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "//Count requests by operation and resultcode\nrequests \n| where success == false and (url != \"/\" and url != \"/health\")\n| project operation_Name, resultCode\n| summarize count() by operation_Name, resultCode\n| order by operation_Name asc, resultCode asc \n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "AnalyticsGrid",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "Analytics",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${cop_api_ai_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "GridColumnsWidth": {
+                  "operation_Name": "280px"
+                },
+                "PartTitle": "Failed Requests Count by Operation",
+                "PartSubTitle": "CoP API"
+              }
+            }
+          }
+        },
+        "16": {
+          "position": {
+            "x": 0,
+            "y": 44,
+            "colSpan": 24,
+            "rowSpan": 1
+          },
+          "metadata": {
+            "inputs": [],
+            "type": "Extension/HubsExtension/PartType/MarkdownPart",
+            "settings": {
+              "content": {
+                "settings": {
+                  "content": "# CoP API Dependancies",
+                  "title": "",
+                  "subtitle": "",
+                  "markdownSource": 1,
+                  "markdownUri": null
+                }
+              }
+            }
+          }
+        },
+        "17": {
+          "position": {
+            "x": 0,
+            "y": 45,
+            "colSpan": 13,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/microsoft.insights/components/${cop_api_ai_name}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "9ca34837-553c-49a9-8011-3c56e7612c13",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "dependencies\n| summarize average=avg(duration) by bin(timestamp, 1m), type\n| render timechart with (ymin=0,ymax=10000,ytitle=\"Response Time (ms)\",title=\"(name-verification) Dependancies Response Time Avg\")\n\n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Line",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "(name-verification) Dependancies Response Time Avg",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${cop_api_ai_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "average",
+                      "type": "real"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "type",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "dependencies\n| summarize average=avg(duration) by bin(timestamp, 1m), type\n| render timechart with (ytitle=\"Response Time (ms)\",title=\"(name-verification) Dependancies Response Time Avg\")\n\n"
+              }
+            }
+          }
+        },
+        "18": {
+          "position": {
+            "x": 13,
+            "y": 45,
+            "colSpan": 11,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/microsoft.insights/components/${cop_api_ai_name}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "112bfdde-7dc6-4005-a654-c14092435275",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "dependencies\n| summarize average=max(duration) by bin(timestamp, 1m), type\n| render timechart with (ymin=0,ymax=10000,ytitle=\"Response Time (ms)\",title=\"(name-verification) Dependancies Response Time Max\")\n\n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Line",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "(name-verification) Dependancies Response Time Max",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${cop_api_ai_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "average",
+                      "type": "real"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "type",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "Query": "dependencies\n| summarize average=max(duration) by bin(timestamp, 1m), type\n| render timechart with (ytitle=\"Response Time (ms)\",title=\"(name-verification) Dependancies Response Time Max\")\n\n"
+              }
+            }
+          }
+        },
+        "19": {
+          "position": {
+            "x": 0,
+            "y": 50,
+            "colSpan": 13,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/microsoft.insights/components/${cop_api_ai_name}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "15a05948-5635-47ce-8314-ca1a4dd57e3e",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "// Failing dependencies \n// Which 5 dependencies failed the most today? \ndependencies\n| where success == false\n| summarize totalCount=sum(itemCount) by bin(timestamp, 5m), type, resultCode\n| render timechart with (title=\"CoP API (name-verification) Failed Dependancies (5mins)\")\n\n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "FrameControlChart",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "value": "Line",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "CoP API (name-verification) Failed Dependancies (5mins)",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${cop_api_ai_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "value": {
+                  "xAxis": {
+                    "name": "timestamp",
+                    "type": "datetime"
+                  },
+                  "yAxis": [
+                    {
+                      "name": "totalCount",
+                      "type": "long"
+                    }
+                  ],
+                  "splitBy": [
+                    {
+                      "name": "type",
+                      "type": "string"
+                    }
+                  ],
+                  "aggregation": "Sum"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "value": {
+                  "isEnabled": true,
+                  "position": "Bottom"
+                },
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {}
+          }
+        },
+        "20": {
+          "position": {
+            "x": 13,
+            "y": 50,
+            "colSpan": 11,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "resourceTypeMode",
+                "isOptional": true
+              },
+              {
+                "name": "ComponentId",
+                "isOptional": true
+              },
+              {
+                "name": "Scope",
+                "value": {
+                  "resourceIds": [
+                    "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/microsoft.insights/components/${cop_api_ai_name}"
+                  ]
+                },
+                "isOptional": true
+              },
+              {
+                "name": "PartId",
+                "value": "936fbb1e-4714-4017-a13e-7716661f76dd",
+                "isOptional": true
+              },
+              {
+                "name": "Version",
+                "value": "2.0",
+                "isOptional": true
+              },
+              {
+                "name": "TimeRange",
+                "value": "P1D",
+                "isOptional": true
+              },
+              {
+                "name": "DashboardId",
+                "isOptional": true
+              },
+              {
+                "name": "DraftRequestParameters",
+                "isOptional": true
+              },
+              {
+                "name": "Query",
+                "value": "dependencies\n| where success == false\n| summarize totalCount=sum(itemCount) by bin(timestamp, 5m), type, resultCode\n\n",
+                "isOptional": true
+              },
+              {
+                "name": "ControlType",
+                "value": "AnalyticsGrid",
+                "isOptional": true
+              },
+              {
+                "name": "SpecificChart",
+                "isOptional": true
+              },
+              {
+                "name": "PartTitle",
+                "value": "Analytics",
+                "isOptional": true
+              },
+              {
+                "name": "PartSubTitle",
+                "value": "${cop_api_ai_name}",
+                "isOptional": true
+              },
+              {
+                "name": "Dimensions",
+                "isOptional": true
+              },
+              {
+                "name": "LegendOptions",
+                "isOptional": true
+              },
+              {
+                "name": "IsQueryContainTimeRange",
+                "value": false,
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
+            "settings": {
+              "content": {
+                "PartTitle": "CoP API (name-verification) Failed Dependancies (5mins)"
+              }
+            }
+          }
+        },
+        "21": {
+          "position": {
+            "x": 0,
+            "y": 55,
+            "colSpan": 24,
+            "rowSpan": 1
+          },
+          "metadata": {
+            "inputs": [],
+            "type": "Extension/HubsExtension/PartType/MarkdownPart",
+            "settings": {
+              "content": {
+                "settings": {
+                  "content": "# CoP API Machine Stats",
+                  "title": "",
+                  "subtitle": "",
+                  "markdownSource": 1,
+                  "markdownUri": null
+                }
+              }
+            }
+          }
+        },
+        "22": {
+          "position": {
+            "x": 0,
+            "y": 56,
+            "colSpan": 13,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "sharedTimeRange",
+                "isOptional": true
+              },
+              {
+                "name": "options",
+                "value": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+                          "id": "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/Microsoft.Web/serverFarms/${cop_api_ai_name}"
+                        },
+                        "name": "MemoryPercentage",
+                        "aggregationType": 4,
+                        "namespace": "microsoft.web/serverfarms",
+                        "metricVisualization": {
+                          "displayName": "Memory Percentage"
+                        }
+                      }
+                    ],
+                    "title": "Avg Memory Percentage for ${cop_api_ai_name} by Instance",
+                    "titleKind": 1,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      }
+                    },
+                    "grouping": {
+                      "dimension": "Instance",
+                      "sort": 2,
+                      "top": 10
+                    },
+                    "timespan": {
+                      "relative": {
+                        "duration": 86400000
+                      },
+                      "showUTCTime": false,
+                      "grain": 1
+                    }
+                  }
+                },
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+            "settings": {
+              "content": {
+                "options": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+                          "id": "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/Microsoft.Web/serverFarms/${cop_api_ai_name}"
+                        },
+                        "name": "MemoryPercentage",
+                        "aggregationType": 4,
+                        "namespace": "microsoft.web/serverfarms",
+                        "metricVisualization": {
+                          "displayName": "Memory Percentage"
+                        }
+                      }
+                    ],
+                    "title": "Avg Memory Percentage for ${cop_api_ai_name} by Instance",
+                    "titleKind": 1,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      },
+                      "disablePinning": true
+                    },
+                    "grouping": {
+                      "dimension": "Instance",
+                      "sort": 2,
+                      "top": 10
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "23": {
+          "position": {
+            "x": 13,
+            "y": 56,
+            "colSpan": 11,
+            "rowSpan": 5
+          },
+          "metadata": {
+            "inputs": [
+              {
+                "name": "sharedTimeRange",
+                "isOptional": true
+              },
+              {
+                "name": "options",
+                "value": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+                          "id": "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/Microsoft.Web/serverFarms/${cop_api_ai_name}"
+                        },
+                        "name": "CpuPercentage",
+                        "aggregationType": 4,
+                        "namespace": "microsoft.web/serverfarms",
+                        "metricVisualization": {
+                          "displayName": "CPU Percentage"
+                        }
+                      }
+                    ],
+                    "title": "Avg CPU Percentage for ${cop_api_ai_name} by Instance",
+                    "titleKind": 1,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      }
+                    },
+                    "grouping": {
+                      "dimension": "Instance",
+                      "sort": 2,
+                      "top": 10
+                    },
+                    "timespan": {
+                      "relative": {
+                        "duration": 86400000
+                      },
+                      "showUTCTime": false,
+                      "grain": 1
+                    }
+                  }
+                },
+                "isOptional": true
+              }
+            ],
+            "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+            "settings": {
+              "content": {
+                "options": {
+                  "chart": {
+                    "metrics": [
+                      {
+                        "resourceMetadata": {
+                          "id": "/subscriptions/${subscription_id}/resourceGroups/${cop_api_ai_resource_group_name}/providers/Microsoft.Web/serverFarms/${cop_api_ai_name}"
+                        },
+                        "name": "CpuPercentage",
+                        "aggregationType": 4,
+                        "namespace": "microsoft.web/serverfarms",
+                        "metricVisualization": {
+                          "displayName": "CPU Percentage"
+                        }
+                      }
+                    ],
+                    "title": "Avg CPU Percentage for ${cop_api_ai_name} by Instance",
+                    "titleKind": 1,
+                    "visualization": {
+                      "chartType": 2,
+                      "legendVisualization": {
+                        "isVisible": true,
+                        "position": 2,
+                        "hideSubtitle": false
+                      },
+                      "axisVisualization": {
+                        "x": {
+                          "isVisible": true,
+                          "axisType": 2
+                        },
+                        "y": {
+                          "isVisible": true,
+                          "axisType": 1
+                        }
+                      },
+                      "disablePinning": true
+                    },
+                    "grouping": {
+                      "dimension": "Instance",
+                      "sort": 2,
+                      "top": 10
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "metadata": {
+    "model": {
+      "timeRange": {
+        "value": {
+          "relative": {
+            "duration": 24,
+            "timeUnit": 1
+          }
+        },
+        "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+      },
+      "filterLocale": {
+        "value": "en-us"
+      },
+      "filters": {
+        "value": {
+          "MsPortalFx_TimeRange": {
+            "model": {
+              "format": "local",
+              "granularity": "auto",
+              "relative": "24h"
+            },
+            "displayCache": {
+              "name": "Local Time",
+              "value": "Past 24 hours"
+            },
+            "filteredPartIds": [
+              "StartboardPart-UnboundPart-a8b17448-51d3-4c27-a19c-bcfde4cbc329",
+              "StartboardPart-LogsDashboardPart-a7392ca3-7126-4e16-9bd7-097b460940c7",
+              "StartboardPart-LogsDashboardPart-8b9dd31c-7eb2-4d2e-8370-3fe0ce7a2106",
+              "StartboardPart-LogsDashboardPart-1b7fa99c-5a59-4bdf-a21b-20b92dd9a047",
+              "StartboardPart-LogsDashboardPart-a7cdb9c0-c3fd-4932-bf35-96a6e23b3047",
+              "StartboardPart-LogsDashboardPart-92dcd39b-21f2-420b-9ca2-f41404230079",
+              "StartboardPart-LogsDashboardPart-b488bc27-a51c-4f1c-ba8e-942b2fb7c0d6",
+              "StartboardPart-LogsDashboardPart-a7cdb9c0-c3fd-4932-bf35-96a6e23b3076",
+              "StartboardPart-LogsDashboardPart-2204fa3a-ede1-47c3-b8cd-524f5bc2565a",
+              "StartboardPart-LogsDashboardPart-2204fa3a-ede1-47c3-b8cd-524f5bc256d3",
+              "StartboardPart-LogsDashboardPart-b488bc27-a51c-4f1c-ba8e-942b2fb7c122",
+              "StartboardPart-LogsDashboardPart-b488bc27-a51c-4f1c-ba8e-942b2fb7c158",
+              "StartboardPart-LogsDashboardPart-24f4c838-0709-4d98-ac1d-62e1c238e070",
+              "StartboardPart-LogsDashboardPart-24f4c838-0709-4d98-ac1d-62e1c238e0b1",
+              "StartboardPart-LogsDashboardPart-cf5155a0-a906-4e8f-861e-a4e8a35580bd",
+              "StartboardPart-LogsDashboardPart-cf5155a0-a906-4e8f-861e-a4e8a3558111",
+              "StartboardPart-MonitorChartPart-cf5155a0-a906-4e8f-861e-a4e8a355826d",
+              "StartboardPart-MonitorChartPart-cf5155a0-a906-4e8f-861e-a4e8a3558200",
+              "StartboardPart-LogsDashboardPart-850e2ee0-d137-4374-968e-1bd06c5af082",
+              "StartboardPart-LogsDashboardPart-850e2ee0-d137-4374-968e-1bd06c5af10b"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
