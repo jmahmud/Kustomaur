@@ -22,12 +22,11 @@ namespace Kustomaur.Dashboard.DashboardParts
         
         public override Part GeneratePart()
         {
-            var part = new Part();
-            part.WithPosition(_x, _y, _rowSpan, _colSpan);
-            part.Metadata = new PartMetadata();
-            part.Metadata.WithType("Extension/HubsExtension/PartType/MarkdownPart");
-            part.Metadata.Inputs = new List<Input>();
-            part.Metadata.Settings.Content = new
+            _part.WithPosition(_x, _y, _rowSpan, _colSpan);
+            _part.Metadata = new PartMetadata();
+            _part.Metadata.WithType("Extension/HubsExtension/PartType/MarkdownPart");
+            _part.Metadata.Inputs = new List<Input>();
+            _part.Metadata.Settings.Content = new
             {
                 Settings = new
                 {
@@ -38,7 +37,7 @@ namespace Kustomaur.Dashboard.DashboardParts
                     MarkdownUri = _markdownUri
                 }
             };
-            return part;
+            return _part;
         }
 
        

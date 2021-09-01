@@ -1,35 +1,41 @@
 using System.Collections.Generic;
-using System.Linq;
 using Kustomaur.Models;
 
 namespace Kustomaur.Dashboard.Implementation
 {
-    public class DashboardPartsBuilder : IDashboardComponetBuilder
+    public class DashboardPartsBuilder : IDashboardPartBuilder
     {
-        public Models.Dashboard Dashboard;
-        public List<Part> DashboardParts = new List<Part>();
+        private Parts _parts;
 
-        public DashboardPartsBuilder(Models.Dashboard dashboard)
+        public DashboardPartsBuilder()
         {
-            Dashboard = dashboard;
-        }
-        public void Build()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void AddPart(Part part)
-        {
-            var lense = Dashboard.Properties.Lenses[0];
-            lense.Parts.WithPart(part);
+            _parts = new Parts();
         }
         
-        public void AddPartToSameRow(Part part)
+        public void Build(Models.Dashboard dashboard)
         {
+            if (dashboard.Properties.Lenses == null)
+            {
+                dashboard.Properties.WithLenses(new Lenses());
+                dashboard.Properties.Lenses.WithLense(new Lense());
+            }
+            
+            dashboard.Properties.Lenses[0].WithParts(_parts);
+        }
+
+        public IDashboardPartBuilder AddPart(Part part)
+        {
+            _parts.WithPart(part);
+            return this;
         }
         
-        public void AddPartToSameColumn(Part part)
+        public IDashboardPartBuilder AddPartsAsRow(List<Part> parts)
         {
+            return this;
+        }
+        public IDashboardPartBuilder AddPartsAsColumn(List<Part> parts)
+        {
+            return this;
         }
     }
 }

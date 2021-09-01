@@ -67,7 +67,7 @@ namespace Kustomaur.Models.Tests
             // Assert
             var serialized = Generator.Generate(properties);
 
-            Assert.Contains("{\"lenses\":{\"0\":{\"order\":0,\"parts\":{\"0\":{\"position\":null},\"1\":{\"position\":null}}}},\"metadata\":null}", serialized);
+            Assert.Contains("{\"lenses\":{\"0\":{\"order\":0,\"parts\":{\"0\":{\"position\":null,\"metadata\":null},\"1\":{\"position\":null,\"metadata\":null}}}},\"metadata\":null}", serialized);
         }
         
         [Fact]
@@ -93,7 +93,7 @@ namespace Kustomaur.Models.Tests
             // Assert
             var serialized = Generator.Generate(properties);
 
-            Assert.Contains("{\"lenses\":{\"0\":{\"order\":0,\"parts\":{\"0\":{\"position\":{\"x\":0,\"y\":0,\"colSpan\":1,\"rowSpan\":2}}}}},\"metadata\":null}", serialized);
+            Assert.Contains("{\"lenses\":{\"0\":{\"order\":0,\"parts\":{\"0\":{\"position\":{\"x\":0,\"y\":0,\"colSpan\":1,\"rowSpan\":2},\"metadata\":null}}}},\"metadata\":null}", serialized);
         }
         
         [Fact]
@@ -120,7 +120,7 @@ namespace Kustomaur.Models.Tests
             // Assert
             var serialized = Generator.Generate(properties);
 
-            Assert.Contains("{\"lenses\":{\"0\":{\"order\":0,\"parts\":{\"0\":{\"position\":{\"x\":0,\"y\":0,\"colSpan\":1,\"rowSpan\":2}}}}},\"metadata\":null}", serialized);
+            Assert.Contains("{\"lenses\":{\"0\":{\"order\":0,\"parts\":{\"0\":{\"position\":{\"x\":0,\"y\":0,\"colSpan\":1,\"rowSpan\":2},\"metadata\":null}}}},\"metadata\":null}", serialized);
         }
     }
 }

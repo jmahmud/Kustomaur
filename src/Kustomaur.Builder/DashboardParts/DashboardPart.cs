@@ -8,7 +8,12 @@ namespace Kustomaur.Dashboard.DashboardParts
         protected  int _y;
         protected  int _rowSpan;
         protected  int _colSpan;
-        
+        protected Part _part;
+
+        public DashboardPart()
+        {
+            _part = new Part();
+        }
         public virtual Part GeneratePart()
         {
             return null;

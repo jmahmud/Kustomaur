@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Kustomaur.Dashboard.Implementation.DashboardMetadataModelBuilders;
 using Kustomaur.Models;
 
 namespace Kustomaur.Dashboard
@@ -12,9 +13,14 @@ namespace Kustomaur.Dashboard
 
         public Models.Dashboard Dashboard { get; private set; }
 
-        private List<IDashboardComponetBuilder> _builders { get; set; }
+
+        private IDashboardMetadataModelBuilder _timeRangeBuilder;
+
+        private List<IBaseBuilder> _builders;
         public DashboardBuilder()
         {
+            _timeRangeBuilder = new TimeRangeBuilder();
+            _builders = new List<IBaseBuilder>();
             Dashboard = new Models.Dashboard();
             InitialiseDashboardPropertiesMetadataModel();
 
@@ -37,7 +43,19 @@ namespace Kustomaur.Dashboard
             return this;
         }
 
-        public DashboardBuilder WithComponentBuilder(IDashboardComponetBuilder builder)
+        public DashboardBuilder WithTimeRangeBuilder(TimeRangeBuilder builder)
+        {
+            _timeRangeBuilder = builder;
+            return this;
+        }
+
+        // public DashboardBuilder WithPartsBuilder(IDashboardPartBuilder builder)
+        // {
+        //     _builders.Add(builder);
+        //     return this;
+        // }
+        
+        public DashboardBuilder WithBuilder(IBaseBuilder builder)
         {
             _builders.Add(builder);
             return this;
@@ -45,15 +63,15 @@ namespace Kustomaur.Dashboard
         
         public DashboardBuilder WithFilterLocale(string locale)
         {
-            Dashboard.Properties.Metadata.Model.Add("filterLocale", new { Value = locale });
+            Dashboard.Properties.Metadata.Model.Add("filterLocale", new DashboardPropertiesMetadataModel() { Value = locale });
             return this;
         }
         
-        public DashboardBuilder WithTimeRange(TimeRange timeRange)
-        {
-            Dashboard.Properties.Metadata.Model.Add(nameof(TimeRange), timeRange);
-            return this;
-        }
+        // public DashboardBuilder WithTimeRange(TimeRange timeRange)
+        // {
+        //     Dashboard.Properties.Metadata.Model.Add(nameof(TimeRange), timeRange);
+        //     return this;
+        // }
 
         private void InitialiseDashboardPropertiesMetadataModel()
         {
@@ -69,7 +87,7 @@ namespace Kustomaur.Dashboard
 
             if (Dashboard.Properties.Metadata.Model == null)
             {
-                Dashboard.Properties.Metadata.Model = new Dictionary<string, object>();
+                Dashboard.Properties.Metadata.Model = new Dictionary<string, DashboardPropertiesMetadataModel>();
             }
         }
 
@@ -80,9 +98,17 @@ namespace Kustomaur.Dashboard
             Dashboard.Name = Name;
             
             // Run each builder
-//            _builders.ForEach(builder => builder.Build(Dashboard));
-            
+            CombineAndRunBuilders();
+
             return Dashboard;
+        }
+
+        private void CombineAndRunBuilders()
+        {
+            var builders = new List<IBaseBuilder>();
+            builders.AddRange(_builders);
+            builders.Add(_timeRangeBuilder);
+            builders.ForEach(b => b.Build(Dashboard));
         }
 
         private string BuildId()

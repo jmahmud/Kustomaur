@@ -4,6 +4,10 @@ namespace Kustomaur.Models
 {
     public class PropertiesMetadata
     {
-        public Dictionary<string, object> Model { get; set; }
+        public PropertiesMetadata()
+        {
+            Model = new Dictionary<string, DashboardPropertiesMetadataModel>();
+        }
+        public Dictionary<string, DashboardPropertiesMetadataModel> Model { get; set; }
     }
 }
