@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Kustomaur.Dashboard.DashboardParts;
 using Kustomaur.Models;
 
 namespace Kustomaur.Dashboard.Implementation
@@ -26,6 +27,12 @@ namespace Kustomaur.Dashboard.Implementation
         public IDashboardPartBuilder AddPart(Part part)
         {
             _parts.WithPart(part);
+            return this;
+        }
+        
+        public IDashboardPartBuilder AddPart(DashboardPart dashboardPart)
+        {
+            _parts.WithPart(dashboardPart.GeneratePart());
             return this;
         }
         

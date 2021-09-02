@@ -11,12 +11,17 @@ namespace Kustomaur.Dashboard
         public string ResourceGroup { get; private set; }
         public string Name { get; private set; }
 
-        public Models.Dashboard Dashboard { get; private set; }
+        public Models.Dashboard Dashboard { get; }
 
 
         private IDashboardMetadataModelBuilder _timeRangeBuilder;
 
-        private List<IBaseBuilder> _builders;
+        private IDashboardMetadataModelBuilder _timeRangeFilterBuilder;
+
+        private readonly List<IBaseBuilder> _builders;
+        
+        private string _filterLocale = "en-us";
+        
         public DashboardBuilder()
         {
             _timeRangeBuilder = new TimeRangeBuilder();
@@ -40,6 +45,7 @@ namespace Kustomaur.Dashboard
         public DashboardBuilder WithName(string name)
         {
             Name = name;
+            Dashboard.Tags.Add("hidden-title", name);
             return this;
         }
 
@@ -48,12 +54,6 @@ namespace Kustomaur.Dashboard
             _timeRangeBuilder = builder;
             return this;
         }
-
-        // public DashboardBuilder WithPartsBuilder(IDashboardPartBuilder builder)
-        // {
-        //     _builders.Add(builder);
-        //     return this;
-        // }
         
         public DashboardBuilder WithBuilder(IBaseBuilder builder)
         {
@@ -63,16 +63,10 @@ namespace Kustomaur.Dashboard
         
         public DashboardBuilder WithFilterLocale(string locale)
         {
-            Dashboard.Properties.Metadata.Model.Add("filterLocale", new DashboardPropertiesMetadataModel() { Value = locale });
+            _filterLocale = locale;
             return this;
         }
         
-        // public DashboardBuilder WithTimeRange(TimeRange timeRange)
-        // {
-        //     Dashboard.Properties.Metadata.Model.Add(nameof(TimeRange), timeRange);
-        //     return this;
-        // }
-
         private void InitialiseDashboardPropertiesMetadataModel()
         {
             if (Dashboard.Properties == null)
@@ -96,9 +90,14 @@ namespace Kustomaur.Dashboard
             Dashboard.Id = BuildId();
             Dashboard.Type = "Microsoft.Portal/dashboards";
             Dashboard.Name = Name;
-            
+
             // Run each builder
             CombineAndRunBuilders();
+            
+            //Set filter locale
+            Dashboard.Properties.Metadata.Model.Add("filterLocale", new DashboardPropertiesMetadataModel() { Value = _filterLocale });
+            
+            // Set Filters
 
             return Dashboard;
         }

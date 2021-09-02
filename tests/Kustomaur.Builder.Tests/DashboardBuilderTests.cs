@@ -2,6 +2,8 @@ using System;
 using Kustomaur.Dashboard;
 using Kustomaur.Dashboard.DashboardParts;
 using Kustomaur.Dashboard.Implementation;
+using Kustomaur.Dashboard.Implementation.DashboardMetadataModelBuilders;
+using Kustomaur.Models.Filters;
 using Xunit;
 
 namespace Kustomaur.Builder.Tests
@@ -43,7 +45,7 @@ namespace Kustomaur.Builder.Tests
                 .WithResourceGroup(resourceGroup)
                 .WithName(name)
                 .WithBuilder(new DashboardPartsBuilder()
-                    .AddPart(new MarkdownPart(content:"My first thing").GeneratePart()))
+                    .AddPart(new MarkdownPart(content:"My first thing")))
                 .Build();
             
             // Assert
