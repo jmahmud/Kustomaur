@@ -99,7 +99,7 @@
               },
               {
                 "name": "Query",
-                "value": "requests\n| where url contains \"name-verification\"\n| summarize Average=avg(duration), Percentile_95th=percentile(duration, 95), Percentile_99th=percentile(duration, 99)\n\n",
+                "value": "requests\n| where url contains "name-verification"\n| summarize Average=avg(duration), Percentile_95th=percentile(duration, 95), Percentile_99th=percentile(duration, 99)\n\n",
                 "isOptional": true
               },
               {
@@ -194,7 +194,7 @@
               },
               {
                 "name": "Query",
-                "value": "requests\n| where url contains \"name-verification\"\n| summarize average=avg(duration) by bin(timestamp, 1m)\n| render timechart with (ymin=0,ymax=5000,ytitle=\"Response Time (ms)\",title=\"CoP API (name-verification) Response Time Avg\")",
+                "value": "requests\n| where url contains "name-verification"\n| summarize average=avg(duration) by bin(timestamp, 1m)\n| render timechart with (ymin=0,ymax=5000,ytitle="Response Time (ms)",title="CoP API (name-verification) Response Time Avg")",
                 "isOptional": true
               },
               {
@@ -252,7 +252,7 @@
             "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
             "settings": {
               "content": {
-                "Query": "requests\n| where url contains \"name-verification\"\n| summarize average=avg(duration) by bin(timestamp, 1m)\n| extend Threshold=1500\n| render timechart with (ytitle=\"Response Time (ms)\",title=\"CoP API (name-verification) Response Time Avg\")\n\n",
+                "Query": "requests\n| where url contains "name-verification"\n| summarize average=avg(duration) by bin(timestamp, 1m)\n| extend Threshold=1500\n| render timechart with (ytitle="Response Time (ms)",title="CoP API (name-verification) Response Time Avg")\n\n",
                 "Dimensions": {
                   "xAxis": {
                     "name": "timestamp",
@@ -326,7 +326,7 @@
               },
               {
                 "name": "Query",
-                "value": "requests\n| where url contains \"name-verification\"\n| summarize percentile=percentile(duration,95) by bin(timestamp, 1m)\n| extend Thresld=1500\n| render timechart with (ymin=0,ymax=10000,ytitle=\"Response Time (ms)\",title=\"CoP API (name-verification) Response Time 95th\")\n",
+                "value": "requests\n| where url contains "name-verification"\n| summarize percentile=percentile(duration,95) by bin(timestamp, 1m)\n| extend Thresld=1500\n| render timechart with (ymin=0,ymax=10000,ytitle="Response Time (ms)",title="CoP API (name-verification) Response Time 95th")\n",
                 "isOptional": true
               },
               {
@@ -388,7 +388,7 @@
             "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
             "settings": {
               "content": {
-                "Query": "requests\n| where url contains \"name-verification\"\n| summarize percentile=percentile(duration,95) by bin(timestamp, 1m)\n| extend Thresld=1500\n| render timechart with (ytitle=\"Response Time (ms)\",title=\"CoP API (name-verification) Response Time 95th\")\n\n"
+                "Query": "requests\n| where url contains "name-verification"\n| summarize percentile=percentile(duration,95) by bin(timestamp, 1m)\n| extend Thresld=1500\n| render timechart with (ytitle="Response Time (ms)",title="CoP API (name-verification) Response Time 95th")\n\n"
               }
             }
           }
@@ -444,7 +444,7 @@
               },
               {
                 "name": "Query",
-                "value": "requests\n| where url contains \"name-verification\"\n| summarize percentile=percentile(duration,99) by bin(timestamp, 1m)\n| extend Thresld=1500\n| render timechart with (ymin=0,ymax=15000,ytitle=\"Response Time (ms)\",title=\"CoP API (name-verification) Response Time 99th\")\n",
+                "value": "requests\n| where url contains "name-verification"\n| summarize percentile=percentile(duration,99) by bin(timestamp, 1m)\n| extend Thresld=1500\n| render timechart with (ymin=0,ymax=15000,ytitle="Response Time (ms)",title="CoP API (name-verification) Response Time 99th")\n",
                 "isOptional": true
               },
               {
@@ -506,7 +506,7 @@
             "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
             "settings": {
               "content": {
-                "Query": "requests\n| where url contains \"name-verification\"\n| summarize percentile=percentile(duration,99) by bin(timestamp, 1m)\n| extend Thresld=1500\n| render timechart with (ytitle=\"Response Time (ms)\",title=\"CoP API (name-verification) Response Time 99th\")\n\n"
+                "Query": "requests\n| where url contains "name-verification"\n| summarize percentile=percentile(duration,99) by bin(timestamp, 1m)\n| extend Thresld=1500\n| render timechart with (ytitle="Response Time (ms)",title="CoP API (name-verification) Response Time 99th")\n\n"
               }
             }
           }
@@ -562,7 +562,7 @@
               },
               {
                 "name": "Query",
-                "value": "requests\n| where url contains \"name-verification\"\n| summarize average=avg(duration) by bin(timestamp, 1m)\n| render timechart with (ymin=0,ymax=5000,ytitle=\"Response Time (ms)\",title=\"CoP API (name-verification) Response Time Avg\")",
+                "value": "requests\n| where url contains "name-verification"\n| summarize average=avg(duration) by bin(timestamp, 1m)\n| render timechart with (ymin=0,ymax=5000,ytitle="Response Time (ms)",title="CoP API (name-verification) Response Time Avg")",
                 "isOptional": true
               },
               {
@@ -620,7 +620,7 @@
             "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
             "settings": {
               "content": {
-                "Query": "let lastweek = ago(7d);\nlet now = now();\nrequests\n| where url contains \"name-verification\" and timestamp between (lastweek .. now)\n| summarize average=avg(duration), percentil95th=percentile(duration, 95), percentil99th=percentile(duration, 99) by bin(timestamp, 30m)\n| extend Threshold=1500\n| render timechart with (ytitle=\"Response Time (ms)\",title=\"CoP API (name-verification) Response Time 7d Rolling Avg\")\n\n",
+                "Query": "let lastweek = ago(7d);\nlet now = now();\nrequests\n| where url contains "name-verification" and timestamp between (lastweek .. now)\n| summarize average=avg(duration), percentil95th=percentile(duration, 95), percentil99th=percentile(duration, 99) by bin(timestamp, 30m)\n| extend Threshold=1500\n| render timechart with (ytitle="Response Time (ms)",title="CoP API (name-verification) Response Time 7d Rolling Avg")\n\n",
                 "Dimensions": {
                   "xAxis": {
                     "name": "timestamp",
@@ -716,7 +716,7 @@
               },
               {
                 "name": "Query",
-                "value": "// Response time buckets \n// Show how many requests are in each performance-bucket. \nrequests\n| summarize requestCount=sum(itemCount), maxDuration=max(duration) by performanceBucket\n| order by maxDuration asc // sort by average request duration\n| project-away maxDuration // no need to display avgDuration, we used it only for sorting results\n| render piechart with (title=\"CoP API (name-verification) Response Time (Bucketed)\")\n",
+                "value": "// Response time buckets \n// Show how many requests are in each performance-bucket. \nrequests\n| summarize requestCount=sum(itemCount), maxDuration=max(duration) by performanceBucket\n| order by maxDuration asc // sort by average request duration\n| project-away maxDuration // no need to display avgDuration, we used it only for sorting results\n| render piechart with (title="CoP API (name-verification) Response Time (Bucketed)")\n",
                 "isOptional": true
               },
               {
@@ -826,7 +826,7 @@
               },
               {
                 "name": "Query",
-                "value": "// Request count trend \n// Chart Request count over the last day. \n// To create an alert for this query, click '+ New alert rule'\nrequests\n| where url contains \"name-verification\"\n| summarize totalCount=sum(itemCount) by bin(timestamp, 5m)\n| render areachart with (title=\"CoP API (name-verification) Request count (5min)\")\n",
+                "value": "// Request count trend \n// Chart Request count over the last day. \n// To create an alert for this query, click '+ New alert rule'\nrequests\n| where url contains "name-verification"\n| summarize totalCount=sum(itemCount) by bin(timestamp, 5m)\n| render areachart with (title="CoP API (name-verification) Request count (5min)")\n",
                 "isOptional": true
               },
               {
@@ -936,7 +936,7 @@
               },
               {
                 "name": "Query",
-                "value": "requests\n| where url contains \"name-verification\" and success == true\n| summarize sum(itemCount) by tostring(customDimensions[\"ParticipantName\"]), bin(timestamp, 5m) \n| render columnchart  with (title=\"Successful CoP Requests (1 min)\")\n\n",
+                "value": "requests\n| where url contains "name-verification" and success == true\n| summarize sum(itemCount) by tostring(customDimensions["ParticipantName"]), bin(timestamp, 5m) \n| render columnchart  with (title="Successful CoP Requests (1 min)")\n\n",
                 "isOptional": true
               },
               {
@@ -1051,7 +1051,7 @@
               },
               {
                 "name": "Query",
-                "value": "requests\n| where url contains \"name-verification\" and success == true\n| summarize sum(itemCount) by tostring(customDimensions[\"ParticipantName\"]), bin(timestamp, 1m) \n| render piechart  with (title=\"Successful CoP Requests (1 min) by %\")\n",
+                "value": "requests\n| where url contains "name-verification" and success == true\n| summarize sum(itemCount) by tostring(customDimensions["ParticipantName"]), bin(timestamp, 1m) \n| render piechart  with (title="Successful CoP Requests (1 min) by %")\n",
                 "isOptional": true
               },
               {
@@ -1161,7 +1161,7 @@
               },
               {
                 "name": "Query",
-                "value": "requests\n| where url contains \"name-verification\" and success == true\n| extend match = case(tostring(customDimensions[\"Matched\"]) == \"True\", 'True Match',\ntostring(customDimensions[\"Matched\"]) == \"False\" and tostring(customDimensions[\"ReasonCode\"]) in (\"MBAM\", \"PAMM\"), \"Partial Match\",  \n 'False Match')\n| summarize sum(itemCount) by match\n| render piechart with (title=\"Name Match Results\")",
+                "value": "requests\n| where url contains "name-verification" and success == true\n| extend match = case(tostring(customDimensions["Matched"]) == "True", 'True Match',\ntostring(customDimensions["Matched"]) == "False" and tostring(customDimensions["ReasonCode"]) in ("MBAM", "PAMM"), "Partial Match",  \n 'False Match')\n| summarize sum(itemCount) by match\n| render piechart with (title="Name Match Results")",
                 "isOptional": true
               },
               {
@@ -1271,7 +1271,7 @@
               },
               {
                 "name": "Query",
-                "value": "requests\n| where url contains \"name-verification\" and success == true and tostring(customDimensions[\"Matched\"]) == \"False\"\n| summarize sum(itemCount) by ReasonCode=tostring(customDimensions[\"ReasonCode\"])\n| extend ReasonCodeDescription = case(\nReasonCode == \"AC01\", \"Incorrect Account Number (AC01)\",\nReasonCode == \"ANNM\", \"Account Name does Not Match (ANNM)\",\nReasonCode == \"MBAM\", \"There may be a match on the Account Name (MBAM)\",\nReasonCode == \"BANM\", \"Business account, name matches (BANM)\",\nReasonCode == \"PANM\", \"Personal account, name matches (PANM)\",\nReasonCode == \"BAMM\", \"Business account, name may be a match (BAMM)\",\nReasonCode == \"PAMM\", \"Personal account, name may be a match (PAMM)\",\nReasonCode == \"PAMM\", \"Personal account, name may be a match (PAMM)\",\nReasonCode == \"ACNS\", \"Account type Not Supported for CoP (ACNS)\",\nReasonCode == \"OPTO\", \"Opted out of CoP Scheme (OPTO)\",\nReasonCode == \"SCNS\", \"Sort code not supported at endpoint (SCNS)\",\n \"N/A\")\n| project ReasonCodeDescription, sum_itemCount\n| render piechart  with (title=\"Partial/False Matshes: Reason Code Breakdown\")",
+                "value": "requests\n| where url contains "name-verification" and success == true and tostring(customDimensions["Matched"]) == "False"\n| summarize sum(itemCount) by ReasonCode=tostring(customDimensions["ReasonCode"])\n| extend ReasonCodeDescription = case(\nReasonCode == "AC01", "Incorrect Account Number (AC01)",\nReasonCode == "ANNM", "Account Name does Not Match (ANNM)",\nReasonCode == "MBAM", "There may be a match on the Account Name (MBAM)",\nReasonCode == "BANM", "Business account, name matches (BANM)",\nReasonCode == "PANM", "Personal account, name matches (PANM)",\nReasonCode == "BAMM", "Business account, name may be a match (BAMM)",\nReasonCode == "PAMM", "Personal account, name may be a match (PAMM)",\nReasonCode == "PAMM", "Personal account, name may be a match (PAMM)",\nReasonCode == "ACNS", "Account type Not Supported for CoP (ACNS)",\nReasonCode == "OPTO", "Opted out of CoP Scheme (OPTO)",\nReasonCode == "SCNS", "Sort code not supported at endpoint (SCNS)",\n "N/A")\n| project ReasonCodeDescription, sum_itemCount\n| render piechart  with (title="Partial/False Matshes: Reason Code Breakdown")",
                 "isOptional": true
               },
               {
@@ -1404,7 +1404,7 @@
               },
               {
                 "name": "Query",
-                "value": "requests\n| where success == false\n| summarize failedRequestsCount=sum(itemCount) by bin(timestamp, 5m), resultCode, operation_Name\n| render timechart with (title=\"CoP API (name-verification) Failed Requests Count (5mins)\")\n",
+                "value": "requests\n| where success == false\n| summarize failedRequestsCount=sum(itemCount) by bin(timestamp, 5m), resultCode, operation_Name\n| render timechart with (title="CoP API (name-verification) Failed Requests Count (5mins)")\n",
                 "isOptional": true
               },
               {
@@ -1523,7 +1523,7 @@
               },
               {
                 "name": "Query",
-                "value": "//Count requests by operation and resultcode\nrequests \n| where success == false and (url != \"/\" and url != \"/health\")\n| project operation_Name, resultCode\n| summarize count() by operation_Name, resultCode\n| order by operation_Name asc, resultCode asc \n",
+                "value": "//Count requests by operation and resultcode\nrequests \n| where success == false and (url != "/" and url != "/health")\n| project operation_Name, resultCode\n| summarize count() by operation_Name, resultCode\n| order by operation_Name asc, resultCode asc \n",
                 "isOptional": true
               },
               {
@@ -1645,7 +1645,7 @@
               },
               {
                 "name": "Query",
-                "value": "dependencies\n| summarize average=avg(duration) by bin(timestamp, 1m), type\n| render timechart with (ymin=0,ymax=10000,ytitle=\"Response Time (ms)\",title=\"(name-verification) Dependancies Response Time Avg\")\n\n",
+                "value": "dependencies\n| summarize average=avg(duration) by bin(timestamp, 1m), type\n| render timechart with (ymin=0,ymax=10000,ytitle="Response Time (ms)",title="(name-verification) Dependancies Response Time Avg")\n\n",
                 "isOptional": true
               },
               {
@@ -1708,7 +1708,7 @@
             "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
             "settings": {
               "content": {
-                "Query": "dependencies\n| summarize average=avg(duration) by bin(timestamp, 1m), type\n| render timechart with (ytitle=\"Response Time (ms)\",title=\"(name-verification) Dependancies Response Time Avg\")\n\n"
+                "Query": "dependencies\n| summarize average=avg(duration) by bin(timestamp, 1m), type\n| render timechart with (ytitle="Response Time (ms)",title="(name-verification) Dependancies Response Time Avg")\n\n"
               }
             }
           }
@@ -1764,7 +1764,7 @@
               },
               {
                 "name": "Query",
-                "value": "dependencies\n| summarize average=max(duration) by bin(timestamp, 1m), type\n| render timechart with (ymin=0,ymax=10000,ytitle=\"Response Time (ms)\",title=\"(name-verification) Dependancies Response Time Max\")\n\n",
+                "value": "dependencies\n| summarize average=max(duration) by bin(timestamp, 1m), type\n| render timechart with (ymin=0,ymax=10000,ytitle="Response Time (ms)",title="(name-verification) Dependancies Response Time Max")\n\n",
                 "isOptional": true
               },
               {
@@ -1827,7 +1827,7 @@
             "type": "Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart",
             "settings": {
               "content": {
-                "Query": "dependencies\n| summarize average=max(duration) by bin(timestamp, 1m), type\n| render timechart with (ytitle=\"Response Time (ms)\",title=\"(name-verification) Dependancies Response Time Max\")\n\n"
+                "Query": "dependencies\n| summarize average=max(duration) by bin(timestamp, 1m), type\n| render timechart with (ytitle="Response Time (ms)",title="(name-verification) Dependancies Response Time Max")\n\n"
               }
             }
           }
@@ -1883,7 +1883,7 @@
               },
               {
                 "name": "Query",
-                "value": "// Failing dependencies \n// Which 5 dependencies failed the most today? \ndependencies\n| where success == false\n| summarize totalCount=sum(itemCount) by bin(timestamp, 5m), type, resultCode\n| render timechart with (title=\"CoP API (name-verification) Failed Dependancies (5mins)\")\n\n",
+                "value": "// Failing dependencies \n// Which 5 dependencies failed the most today? \ndependencies\n| where success == false\n| summarize totalCount=sum(itemCount) by bin(timestamp, 5m), type, resultCode\n| render timechart with (title="CoP API (name-verification) Failed Dependancies (5mins)")\n\n",
                 "isOptional": true
               },
               {

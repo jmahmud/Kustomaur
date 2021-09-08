@@ -25,6 +25,7 @@ namespace Kustomaur.Dashboard
         public DashboardBuilder()
         {
             _timeRangeBuilder = new TimeRangeBuilder();
+            _timeRangeFilterBuilder = new TimeRangeFilterBuilder();
             _builders = new List<IBaseBuilder>();
             Dashboard = new Models.Dashboard();
             InitialiseDashboardPropertiesMetadataModel();
@@ -111,6 +112,7 @@ namespace Kustomaur.Dashboard
             var builders = new List<IBaseBuilder>();
             builders.AddRange(_builders);
             builders.Add(_timeRangeBuilder);
+            builders.Add(_timeRangeFilterBuilder);
             builders.ForEach(b => b.Build(Dashboard));
         }
 

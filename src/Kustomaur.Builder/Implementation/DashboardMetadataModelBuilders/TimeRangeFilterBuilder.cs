@@ -26,13 +26,27 @@ namespace Kustomaur.Dashboard.Implementation.DashboardMetadataModelBuilders
             return this;
         }
         
-        public TimeRangeFilterBuilder WithGranularity()
+        public TimeRangeFilterBuilder WithGranularity(MsPortalFxTimeRangeModelGranularity granularity)
         {
-            throw new NotImplementedException();
+            _timeRangeFiler.Model.Granularity = granularity;
             return this;
         }
 
+        public TimeRangeFilterBuilder WithRelative(MsPortalFxTimeRangeModelRelative relative)
+        {
+            _timeRangeFiler.Model.Relative = relative;
+            _timeRangeFiler.Model.Absolute = null;
+            return this;
+        }
+        
+        public TimeRangeFilterBuilder WithAbsolute(DateTime from, DateTime to)
+        {
+            _timeRangeFiler.Model.Relative = null;
+            _timeRangeFiler.Model.Absolute = new MsPortalFxTimeRangeModelAbsolute(from, to);
+            return this;
+        }
 
+        
         
         
     }

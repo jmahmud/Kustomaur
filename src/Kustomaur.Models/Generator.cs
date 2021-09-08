@@ -1,4 +1,6 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
+using Kustomaur.Models.Serialisation;
 
 namespace Kustomaur.Models
 {
@@ -10,6 +12,8 @@ namespace Kustomaur.Models
         }
 
         public static JsonSerializerOptions JsonSerializerOptions => new JsonSerializerOptions()
-            { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
     }
 }

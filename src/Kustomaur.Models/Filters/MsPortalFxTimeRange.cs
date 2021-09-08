@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 namespace Kustomaur.Models.Filters
@@ -95,10 +96,10 @@ namespace Kustomaur.Models.Filters
     public class MsPortalFxTimeRangeModel
     {
         public MsPortalFxTimeRangeModelFormat Format { get; set; } 
-        public string Granularity { get; set; }
+        public MsPortalFxTimeRangeModelGranularity Granularity { get; set; }
         
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string Relative { get; set; }
+        public MsPortalFxTimeRangeModelRelative? Relative { get; set; }
         
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public MsPortalFxTimeRangeModelAbsolute Absolute { get; set; }
@@ -107,47 +108,53 @@ namespace Kustomaur.Models.Filters
         {
             Granularity = MsPortalFxTimeRangeModelGranularity.Auto;
             Relative = MsPortalFxTimeRangeModelRelative.Hours24;
+            Absolute = null;
         }
     }
 
     public enum MsPortalFxTimeRangeModelFormat
     {
-        [JsonPropertyName("utc")]
+        [EnumMember(Value = "utc")]
         Utc,
         
-        [JsonPropertyName("local")]
+        [EnumMember(Value = "local")]
         Local
     }
-
-    public static class MsPortalFxTimeRangeModelRelative
-    { 
-        public const string Minutes30 = "30m";
-        public const string Hour1 = "1h";
-        public const string Hours4 = "4h";
-        public const string Hours12 = "12h";
-        public const string Hours24 = "24h";
-        public const string Hours48 = "48h";
-        public const string Days3 = "3d";
-        public const string Days7 = "7d";
-        public const string Days30 = "30d";
-    }
     
-    public static class MsPortalFxTimeRangeModelGranularity
+    public enum MsPortalFxTimeRangeModelRelative
     {
-        public static string Auto => "auto";
-        public static string Minute1 => "1m";
-        public static string Minute5 => "5m";
-        public static string Minute15 => "15m";
-        public static string Minute30 => "30m";
-        public static string Hour1 => "1h";
-        public static string Hour6 => "6h";
-        public static string Hour12 => "12h";
-        public static string Week1 => "1w";
-        public static string Month1 => "1m";
+        [EnumMember(Value = "30m")] Minutes30,
+        [EnumMember(Value = "1h")] Hour1,
+        [EnumMember(Value = "4h")] Hours4,
+        [EnumMember(Value = "12h")] Hours12,
+        [EnumMember(Value = "24h")] Hours24,
+        [EnumMember(Value = "48h")] Hours48,
+        [EnumMember(Value = "3d")] Days3,
+        [EnumMember(Value = "7d")] Days7,
+        [EnumMember(Value = "30d")] Days30
     }
-    
+
+    public enum MsPortalFxTimeRangeModelGranularity
+    {
+        [EnumMember(Value = "auto")] Auto,
+        [EnumMember(Value = "1m")] Minute1,
+        [EnumMember(Value = "5m")] Minute5,
+        [EnumMember(Value = "15m")] Minute15,
+        [EnumMember(Value = "30m")] Minute30,
+        [EnumMember(Value = "1h")] Hour1,
+        [EnumMember(Value = "6h")] Hour6,
+        [EnumMember(Value = "12h")] Hour12,
+        [EnumMember(Value = "1w")] Week1,
+        [EnumMember(Value = "1mo")] Month1
+    }
+
     public class  MsPortalFxTimeRangeModelAbsolute
     {
+        public MsPortalFxTimeRangeModelAbsolute(DateTime from, DateTime to)
+        {
+            FromDate = from;
+            ToDate = to;
+        }
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
     }
