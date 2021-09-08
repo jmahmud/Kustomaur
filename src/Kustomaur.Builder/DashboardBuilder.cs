@@ -45,6 +45,10 @@ namespace Kustomaur.Dashboard
         public DashboardBuilder WithName(string name)
         {
             Name = name;
+            if (Dashboard.Tags == null)
+            {
+                Dashboard.Tags = new Dictionary<string, string>();
+            }
             Dashboard.Tags.Add("hidden-title", name);
             return this;
         }
