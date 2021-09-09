@@ -13,7 +13,8 @@ namespace Kustomaur.Models
 
         public static JsonSerializerOptions JsonSerializerOptions => new JsonSerializerOptions()
         {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            
         };
     }
 }

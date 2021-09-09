@@ -9,15 +9,20 @@ namespace Kustomaur.Dashboard.Implementation.DashboardMetadataModelBuilders
     public class TimeRangeFilterBuilder : IDashboardMetadataModelBuilder
     {
         private MsPortalFxTimeRange _timeRangeFiler = new MsPortalFxTimeRange();
-
+        private const string MS_PORTAL_FX_TIMERANGE_NAME = "MsPortalFx_TimeRange";
         public void Build(Models.Dashboard dashboard)
         {
             if (!dashboard.Properties.Metadata.Model.ContainsKey("filters"))
             {
                 dashboard.Properties.Metadata.Model.Add("filters", new DashboardPropertiesMetadataModel() { Value = new Dictionary<string, object>()});
             }
+            
             DashboardPropertiesMetadataModel filtersModel = dashboard.Properties.Metadata.Model["filters"];
-            ((Dictionary<string, object>)filtersModel.Value).Add("MsPortalFx_TimeRange", _timeRangeFiler);
+
+            if (!filtersModel.ValueAs<Dictionary<string, object>>().ContainsKey(MS_PORTAL_FX_TIMERANGE_NAME))
+            {
+                filtersModel.ValueAs<Dictionary<string, object>>().Add(MS_PORTAL_FX_TIMERANGE_NAME, _timeRangeFiler);
+            }
         }
 
         public TimeRangeFilterBuilder WithFormat(MsPortalFxTimeRangeModelFormat format)

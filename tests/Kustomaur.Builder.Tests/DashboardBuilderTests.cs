@@ -31,6 +31,8 @@ namespace Kustomaur.Builder.Tests
                 "{\"properties\":{\"lenses\":null,\"metadata\":{\"model\":{\"timeRange\":{\"value\":{\"type\":\"MsPortalFx.Composition.Configuration.ValueTypes.TimeRange\",\"relative\":{\"duration\":24,\"timeUnit\":1}}},\"filters\":{\"value\":{\"MsPortalFx_TimeRange\":{\"model\":{\"format\":\"utc\",\"granularity\":\"auto\",\"relative\":\"24h\"},\"displayCache\":{\"name\":\"UTC Time\",\"value\":\"Past 24 hours\"},\"filteredPartIds\":[]}}},\"filterLocale\":{\"value\":\"en-us\"}}}},\"id\":\"/subscriptions/6b062fa3-dbe5-4e4a-8d54-ce7286ec9ef6/resourceGroups/dashboards/providers/Microsoft.Portal/dashboards/ce043e69-f9f3-4618-bbe2-2a93e769b56d\",\"name\":\"ce043e69-f9f3-4618-bbe2-2a93e769b56d\",\"type\":\"Microsoft.Portal/dashboards\",\"location\":null,\"tags\":{\"hidden-title\":\"ce043e69-f9f3-4618-bbe2-2a93e769b56d\"}}",
                 Dashboard.Generator.Generate(dashboard));
         }
+
+       
         
         [Fact]
         public void CanCreateADashboardWithPartsBuilder()

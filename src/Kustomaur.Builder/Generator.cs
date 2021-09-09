@@ -17,6 +17,7 @@ namespace Kustomaur.Dashboard
             serializerOptions.Converters.Add(new JsonStringEnumConverterEx<MsPortalFxTimeRangeModelRelative>());
             serializerOptions.Converters.Add(new JsonStringEnumConverterEx<MsPortalFxTimeRangeModelGranularity>());
             serializerOptions.Converters.Add(new JsonStringEnumConverterEx<MsPortalFxTimeRangeModelFormat>());
+            serializerOptions.Converters.Add(new DateTimeConverter());
             return serializerOptions;
         }
     }
