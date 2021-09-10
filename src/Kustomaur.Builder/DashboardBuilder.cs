@@ -92,7 +92,7 @@ namespace Kustomaur.Dashboard
 
         public Models.Dashboard Build()
         {
-            Dashboard.Id = BuildId();
+            //Dashboard.Id = BuildId();
             Dashboard.Type = "Microsoft.Portal/dashboards";
             Dashboard.Name = Name;
 

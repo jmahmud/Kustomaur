@@ -18,22 +18,22 @@ namespace Kustomaur.Dashboard.DashboardParts
         {
             return null;
         }
-        public void SetX(int x)
+        public void WithX(int x)
         {
             _x = x;
         }
 
-        public void SetY(int y)
+        public void WithY(int y)
         {
             _y = y;
         }
 
-        public void SetRowSpan(int rowSpan)
+        public void WithRowSpan(int rowSpan)
         {
             _rowSpan = rowSpan;
         }
 
-        public void SetColSpan(int colSpan)
+        public void WithColSpan(int colSpan)
         {
             _colSpan = colSpan;
         }

@@ -10,6 +10,11 @@ namespace Kustomaur.Dashboard
         {
             return JsonSerializer.Serialize(dashboard, GetSerializerOptions());
         }
+        
+        public static string Generate(Models.DashboardProperties dashboardProperties)
+        {
+            return JsonSerializer.Serialize(dashboardProperties, GetSerializerOptions());
+        }
 
         public static JsonSerializerOptions GetSerializerOptions()
         {

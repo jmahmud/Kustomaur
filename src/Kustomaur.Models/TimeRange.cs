@@ -4,7 +4,6 @@ namespace Kustomaur.Models
 {
     public class TimeRange
     {
-        public string Type => "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange";
         public TimeRangeRelative Relative { get; set; }
 
         public TimeRange()

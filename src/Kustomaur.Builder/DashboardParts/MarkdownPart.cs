@@ -18,6 +18,10 @@ namespace Kustomaur.Dashboard.DashboardParts
             _subtitle = subtitle;
             _markdownSource = markdownSource;
             _markdownUri = markdownUri;
+            
+            // Default Row and Column
+            WithRowSpan(3);
+            WithColSpan(3);
         }
         
         public override Part GeneratePart()

@@ -6,6 +6,7 @@ namespace Kustomaur.Dashboard.Implementation.DashboardMetadataModelBuilders
     {
         private int _duration;
         private int _timeUnit;
+        private const string TYPE_NAME = "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange";
 
         public TimeRangeBuilder()
         {
@@ -18,7 +19,7 @@ namespace Kustomaur.Dashboard.Implementation.DashboardMetadataModelBuilders
             var timeRange = new TimeRange();
             timeRange.Relative.Duration = _duration;
             timeRange.Relative.TimeUnit = _timeUnit;
-            dashboard.Properties.Metadata.Model.Add("timeRange", new DashboardPropertiesMetadataModel() { Value = timeRange });
+            dashboard.Properties.Metadata.Model.Add("timeRange", new DashboardPropertiesMetadataModel() { Value = timeRange, Type = TYPE_NAME });
         }
 
         public TimeRangeBuilder WithDuration(int duration)
