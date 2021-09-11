@@ -18,24 +18,28 @@ namespace Kustomaur.Dashboard.DashboardParts
         {
             return null;
         }
-        public void WithX(int x)
+        public DashboardPart WithX(int x)
         {
             _x = x;
+            return this;
         }
 
-        public void WithY(int y)
+        public DashboardPart WithY(int y)
         {
             _y = y;
+            return this;
         }
 
-        public void WithRowSpan(int rowSpan)
+        public DashboardPart WithRowSpan(int rowSpan)
         {
             _rowSpan = rowSpan;
+            return this;
         }
 
-        public void WithColSpan(int colSpan)
+        public DashboardPart WithColSpan(int colSpan)
         {
             _colSpan = colSpan;
+            return this;
         }
     }
 }
