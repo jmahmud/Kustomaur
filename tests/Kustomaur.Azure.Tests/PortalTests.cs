@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Kustomaur.Azure.IoC;
 using Kustomaur.Dashboard;
 using Kustomaur.Dashboard.DashboardParts;
+using Kustomaur.Dashboard.DashboardParts.Implementations;
 using Kustomaur.Dashboard.Implementation;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Kustomaur.Models;
 
-namespace Kustomaur.Dashboard.DashboardParts
+namespace Kustomaur.Dashboard.DashboardParts.Implementations
 {
     public class MarkdownPart : DashboardPart
     {
