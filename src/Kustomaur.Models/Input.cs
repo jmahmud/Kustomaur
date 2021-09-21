@@ -7,10 +7,11 @@ namespace Kustomaur.Models
         
         public object Value { get; set; }
 
-        public Input(string name)
+        public Input(string name, bool isOptional = true, object value = null)
         {
             Name = name;
-            IsOptional = true;
+            IsOptional = isOptional;
+            Value = value;
         }
     }
 }
