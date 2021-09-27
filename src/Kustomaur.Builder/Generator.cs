@@ -18,7 +18,7 @@ namespace Kustomaur.Dashboard
 
         public static JsonSerializerOptions GetSerializerOptions()
         {
-            var serializerOptions = Models.Generator.JsonSerializerOptions;
+            var serializerOptions = Models.GeneratorSerialisation.JsonSerializerOptions;
             serializerOptions.Converters.Add(new JsonStringEnumConverterEx<MsPortalFxTimeRangeModelRelative>());
             serializerOptions.Converters.Add(new JsonStringEnumConverterEx<MsPortalFxTimeRangeModelGranularity>());
             serializerOptions.Converters.Add(new JsonStringEnumConverterEx<MsPortalFxTimeRangeModelFormat>());

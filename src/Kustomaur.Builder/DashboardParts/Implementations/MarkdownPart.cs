@@ -30,17 +30,21 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             _part.Metadata = new PartMetadata();
             _part.Metadata.WithType("Extension/HubsExtension/PartType/MarkdownPart");
             _part.Metadata.Inputs = new List<Input>();
-            _part.Metadata.Settings.Content = new
+            _part.Metadata.Settings = new
             {
-                Settings = new
+                Content = new
                 {
-                    Content = _content,
-                    Title = _title,
-                    Subtitle = _subtitle,
-                    MarkdownSource = _markdownSource,
-                    MarkdownUri = _markdownUri
+                    Settings = new
+                    {
+                        Content = _content,
+                        Title = _title,
+                        Subtitle = _subtitle,
+                        MarkdownSource = _markdownSource,
+                        MarkdownUri = _markdownUri
+                    }
                 }
             };
+                
             return _part;
         }
 

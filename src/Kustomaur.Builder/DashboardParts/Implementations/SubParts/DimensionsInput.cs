@@ -6,10 +6,8 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
 {
     public class DimensionsInput : Input
     {
-        public DimensionsInputValue Value { get; set; }
         public DimensionsInput() : base("Dimensions")
         {
-            Value = new DimensionsInputValue();
         }
 
         public DimensionsInput WithValue(DimensionsInputValue value)
@@ -20,27 +18,31 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
 
         public DimensionsInput WithXAxis(DimensionsInputValueAxis xAxis)
         {
-            Value.XAxis = xAxis;
+            ((DimensionsInputValue)Value).XAxis = xAxis;
             return this;
         }
 
         public DimensionsInput WithYAxis(List<DimensionsInputValueAxis> yAxis)
         {
-            Value.YAxis = yAxis;
+            ((DimensionsInputValue)Value).YAxis = yAxis;
             return this;
         }
     }
 
     public class DimensionsInputValue
     {
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("xAxis")]
         public DimensionsInputValueAxis XAxis { get; set; }
         
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("yAxis")]
         public List<DimensionsInputValueAxis> YAxis { get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public DimensionsInputValueAggregation? Aggregation { get; set; }
         
-        public DimensionsInputValueAggregation Aggregation { get; set; }
-        
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<object> SplitBy { get; set; }
 
         public DimensionsInputValue()

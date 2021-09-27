@@ -4,12 +4,12 @@ using Kustomaur.Models.Serialisation;
 
 namespace Kustomaur.Models
 {
-    public static class Generator
+    public static class GeneratorSerialisation
     {
-        public static string Generate(DashboardProperties properties)
-        {
-            return JsonSerializer.Serialize(properties, JsonSerializerOptions);
-        }
+        // public static string Generate(DashboardProperties properties)
+        // {
+        //     return JsonSerializer.Serialize(properties, JsonSerializerOptions);
+        // }
 
         public static JsonSerializerOptions JsonSerializerOptions => new JsonSerializerOptions()
         {

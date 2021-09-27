@@ -20,6 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\src\Kustomaur.Builder\Kustomaur.Builder.csproj" />
       <ProjectReference Include="..\..\src\Kustomaur.Models\Kustomaur.Models.csproj" />
     </ItemGroup>
 

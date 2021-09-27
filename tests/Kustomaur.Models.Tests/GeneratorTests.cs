@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json;
 using Xunit;
 using JsonSerializer = System.Text.Json.JsonSerializer;
+using Kustomaur.Dashboard;
 
 namespace Kustomaur.Models.Tests
 {
@@ -18,7 +19,7 @@ namespace Kustomaur.Models.Tests
                 .WithLenses(lenses);
             
             // Assert
-            var serialized = Generator.Generate(properties);
+            var serialized = Kustomaur.Dashboard.Generator.Generate(properties);
 
             Assert.Contains("{\"lenses\":{},\"metadata\":null}", serialized);
         }

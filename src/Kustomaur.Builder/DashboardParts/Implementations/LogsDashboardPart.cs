@@ -27,6 +27,9 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             // Default Row and Column
             WithRowSpan(3);
             WithColSpan(3);
+            
+            //default dimensioninput
+            DimensionsInput = new DimensionsInput();
             Inputs = new List<Input>();
         }
         
@@ -35,21 +38,17 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             _part.WithPosition(_x, _y, _rowSpan, _colSpan);
             _part.Metadata = new PartMetadata();
             _part.Metadata.WithType("Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart");
-            GenerateInputs();
-            _part.Metadata.Settings.Content = new
-            {
-                Settings = new
-                {
-                    content = new  LogsDashboardPartSettingsContent()
-                    {
-                        Query = KustoQuery
-                    }
-                }
-            };
+            SetInputs();
+            _part.Metadata.Inputs = Inputs;
+            _part.Metadata.Settings = new {};
+            // _part.Metadata.Settings.Content = new LogsDashboardPartSettingsContent()
+            // {
+            //     Query = KustoQuery
+            // };
             return _part;
         }
 
-        private void GenerateInputs()
+        private void SetInputs()
         {
             Inputs.Add(new Input(name: "resourceTypeMode"));
             Inputs.Add(new Input(name: "ComponentId"));
@@ -60,12 +59,16 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             Inputs.Add(new Input(name: "DashboardId"));
             Inputs.Add(new Input(name: "DraftRequestParameters"));
             Inputs.Add(new Input(name: "Query", value: KustoQuery));
-            Inputs.Add(new Input(name: "ControlType", value: "FrameControlChart"));
-            Inputs.Add(new Input(name: "SpecificChart", value: "Line"));
+            Inputs.Add(new Input(name: "ControlType", value: "AnalyticsGrid")); //AnalyticsGrid FrameControlChart
+            Inputs.Add(new Input(name: "SpecificChart")); //Line
             Inputs.Add(new Input(name: "PartTitle", value: PartTitle));
             Inputs.Add(new Input(name: "PartSubTitle", value: PartSubTitle));
-            Inputs.Add(DimensionsInput);
-            Inputs.Add(new Input(name: "LegendOptions", value: new { isEnabled = true, position = "Bottom" }));
+            if (DimensionsInput != null)
+            {
+                Inputs.Add(DimensionsInput);
+            }
+            //Inputs.Add(new Input(name: "LegendOptions", value: new { isEnabled = true, position = "Bottom" }));
+            Inputs.Add(new Input(name: "LegendOptions"));
             Inputs.Add(new Input(name: "IsQueryContainTimeRange", value: IsQueryContainTimeRange));
             
             
@@ -95,7 +98,7 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             return this;
         }
 
-        public LogsDashboardPart WithComponentName(string componentName)
+        public LogsDashboardPart WithInsightsComponentName(string componentName)
         {
             ComponentName = componentName;
             return this;
@@ -138,20 +141,8 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
         [JsonPropertyName("Query")]
         public string Query { get; set; }
         
-        // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        // public LogsDashboardPartSettingsContentDimensions Dimensions { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public DimensionsInput Dimensions { get; set; }
         
     }
-
-    // public class LogsDashboardPartSettingsContentDimensions
-    // {
-    //     [JsonPropertyName("xAxis")]
-    //     public LogsDashboardPartSettingsContentDimensionsXAxis XAxis { get; set; }       
-    // }
-    //
-    // public class LogsDashboardPartSettingsContentDimensionsXAxis
-    // {
-    //     public string Name { get; set; }
-    //     public string Type { get; set; }
-    // }
 }

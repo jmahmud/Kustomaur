@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Kustomaur.Models
 {
@@ -6,8 +7,10 @@ namespace Kustomaur.Models
     {
         public string Type { get; set; }
         public List<Input> Inputs { get; set; }
+        
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Asset Asset { get; set; } 
-        public PartMetadataSettings Settings { get; set; }
+        public object Settings { get; set; }
 
         public PartMetadata()
         {
