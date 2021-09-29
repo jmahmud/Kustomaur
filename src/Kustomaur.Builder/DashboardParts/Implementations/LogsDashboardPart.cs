@@ -18,8 +18,15 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
         public string PartSubTitle { get; set; }
         public bool IsQueryContainTimeRange { get; set; }
         
+        public InputControlType ControlType { get; set; }
+        
         public DimensionsInput DimensionsInput { get; set; }
         
+        public InputSpecificChart? SpecificChart { get; set; }
+
+        public InputLegendOptions LegendOptions { get; set; }
+        
+        public Guid PartId { get; set; }
         public List<Input> Inputs { get; set; }
         
         public LogsDashboardPart()
@@ -59,19 +66,75 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             Inputs.Add(new Input(name: "DashboardId"));
             Inputs.Add(new Input(name: "DraftRequestParameters"));
             Inputs.Add(new Input(name: "Query", value: KustoQuery));
-            Inputs.Add(new Input(name: "ControlType", value: "AnalyticsGrid")); //AnalyticsGrid FrameControlChart
-            Inputs.Add(new Input(name: "SpecificChart")); //Line
+            Inputs.Add(new Input(name: "SpecificChart", value: SpecificChart?.ToString()));
+            
+            SetControlType();
+            SetLegendOptions();
+            SetDimensions();
+            
             Inputs.Add(new Input(name: "PartTitle", value: PartTitle));
             Inputs.Add(new Input(name: "PartSubTitle", value: PartSubTitle));
-            if (DimensionsInput != null)
-            {
-                Inputs.Add(DimensionsInput);
-            }
-            //Inputs.Add(new Input(name: "LegendOptions", value: new { isEnabled = true, position = "Bottom" }));
-            Inputs.Add(new Input(name: "LegendOptions"));
             Inputs.Add(new Input(name: "IsQueryContainTimeRange", value: IsQueryContainTimeRange));
             
             
+        }
+
+        private void SetDimensions()
+        {
+            if (SpecificChart != null)
+            {
+                if (DimensionsInput.Value == null)
+                {
+                    // default the dimensions if SpecificChart is set and there are no dimensions
+                    var dimensionsInputValue = new DimensionsInputValue();
+                    dimensionsInputValue.XAxis.Name = "timestamp";
+                    dimensionsInputValue.XAxis.Type = "datetime";
+                    
+                    dimensionsInputValue.YAxis.Add(new DimensionsInputValueAxis()
+                    {
+                        Name = "duration",
+                        Type = "real"
+                    });
+                    
+                    dimensionsInputValue.SplitBy.Add(new DimensionsInputValueAxis()
+                    {
+                        Name = "id",
+                        Type = "string"
+                    });
+                    
+                    dimensionsInputValue.Aggregation = DimensionsInputValueAggregation.Sum;
+
+                    DimensionsInput.Value = dimensionsInputValue;
+                }    
+            }            
+            Inputs.Add(DimensionsInput);
+
+        }
+
+        private void SetLegendOptions()
+        {
+            if (SpecificChart == null)
+            {
+                Inputs.Add(new Input(name: "LegendOptions"));
+            }
+            else
+            {
+                if (LegendOptions == null)
+                {
+                    LegendOptions = new InputLegendOptions() { position = "Bottom", isEnabled = true};
+                }
+                Inputs.Add(new Input(name: "LegendOptions", value: LegendOptions));
+            }
+        }
+
+        private void SetControlType()
+        {
+            if (SpecificChart != null && ControlType != InputControlType.FrameControlChart)
+            {
+                throw new Exception("ControlType must be FrameControlChart if SpecificChart is set");
+            }
+
+            Inputs.Add(new Input(name: "ControlType", value: ControlType.ToString()));
         }
 
         private string GenerateResourceId()
@@ -131,6 +194,18 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
         public LogsDashboardPart WithIsQueryContainTimeRange(bool isQueryContainTimeRange)
         {
             IsQueryContainTimeRange = isQueryContainTimeRange;
+            return this;
+        }
+
+        public LogsDashboardPart WithControlType(InputControlType controlType)
+        {
+            ControlType = controlType;
+            return this;
+        }
+        
+        public LogsDashboardPart WithLegendOptions(InputLegendOptions legendOptions)
+        {
+            LegendOptions = legendOptions;
             return this;
         }
         
