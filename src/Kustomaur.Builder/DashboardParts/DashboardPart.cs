@@ -9,6 +9,10 @@ namespace Kustomaur.Dashboard.DashboardParts
         protected  int _rowSpan;
         protected  int _colSpan;
         protected Part _part;
+        
+        protected string _subscriptionId;
+
+        protected string _resourceGroup;
 
         public DashboardPart()
         {
@@ -39,6 +43,18 @@ namespace Kustomaur.Dashboard.DashboardParts
         public DashboardPart WithColSpan(int colSpan)
         {
             _colSpan = colSpan;
+            return this;
+        }
+        
+        public DashboardPart WithSubscriptionId(string subscriptionId)
+        {
+            _subscriptionId = subscriptionId;
+            return this;
+        }
+
+        public DashboardPart WithResourceGroup(string resourceGroup)
+        {
+            _resourceGroup = resourceGroup;
             return this;
         }
     }

@@ -22,6 +22,10 @@ namespace Kustomaur.Dashboard.Implementation.DashboardMetadataModelBuilders
             dashboard.Properties.Metadata.Model.Add("timeRange", new DashboardPropertiesMetadataModel() { Value = timeRange, Type = TYPE_NAME });
         }
 
+        public void WithSubscription(string subscriptionId) {}
+
+        public void WithResourceGroup(string resourceGroup) {}
+
         public TimeRangeBuilder WithDuration(int duration)
         {
             _duration = duration;

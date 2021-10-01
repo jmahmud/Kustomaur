@@ -113,7 +113,10 @@ namespace Kustomaur.Dashboard
             builders.AddRange(_builders);
             builders.Add(_timeRangeBuilder);
             builders.Add(_timeRangeFilterBuilder);
-            builders.ForEach(b => b.Build(Dashboard));
+            builders.ForEach(b =>
+            {
+                b.Build(Dashboard);
+            });
         }
 
         private string BuildId()

@@ -9,6 +9,10 @@ namespace Kustomaur.Dashboard.Implementation
     {
         private Parts _parts;
 
+        private string _subscriptionId;
+
+        private string _resourceGroup;
+
         public DashboardPartsBuilder()
         {
             _parts = new Parts();
@@ -25,6 +29,16 @@ namespace Kustomaur.Dashboard.Implementation
             dashboard.Properties.Lenses[0].WithParts(_parts);
         }
 
+        public void WithSubscription(string subscriptionId)
+        {
+            _subscriptionId = subscriptionId;
+        }
+
+        public void WithResourceGroup(string resourceGroup)
+        {
+            _resourceGroup = resourceGroup;
+        }
+
         public IDashboardPartBuilder AddPart(Part part)
         {
             _parts.WithPart(part);
@@ -33,6 +47,7 @@ namespace Kustomaur.Dashboard.Implementation
         
         public IDashboardPartBuilder AddPart(DashboardPart dashboardPart)
         {
+            // add subscriptionid & resourcegroup
             _parts.WithPart(dashboardPart.GeneratePart());
             return this;
         }

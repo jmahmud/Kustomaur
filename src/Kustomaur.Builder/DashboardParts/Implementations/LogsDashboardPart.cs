@@ -9,8 +9,7 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
     public class LogsDashboardPart : DashboardPart
     {
         public string KustoQuery { get; set; }
-        public string ResourceGroup { get; set; }
-        public string SubscriptionId { get; set; }
+       
         public string ComponentName { get; set; }
         public string ComponentId { get; set; }
 
@@ -140,7 +139,7 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
         private string GenerateResourceId()
         {
             return
-                $"/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroup}/providers/microsoft.insights/components/{ComponentName}";
+                $"/subscriptions/{_subscriptionId}/resourceGroups/{_resourceGroup}/providers/microsoft.insights/components/{ComponentName}";
         }
 
         public LogsDashboardPart WithQuery(string kustoQuery)
@@ -148,19 +147,7 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             KustoQuery = kustoQuery;
             return this;
         }
-
-        public LogsDashboardPart WithResourceGroup(string resourceGroup)
-        {
-            ResourceGroup = resourceGroup;
-            return this;
-        }
         
-        public LogsDashboardPart WithSubscriptionId(string subscriptionId)
-        {
-            SubscriptionId = subscriptionId;
-            return this;
-        }
-
         public LogsDashboardPart WithInsightsComponentName(string componentName)
         {
             ComponentName = componentName;

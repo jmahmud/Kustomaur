@@ -25,6 +25,10 @@ namespace Kustomaur.Dashboard.Implementation.DashboardMetadataModelBuilders
             }
         }
 
+        public void WithSubscription(string subscriptionId) {}
+        
+        public void WithResourceGroup(string resourceGroup) {}
+
         public TimeRangeFilterBuilder WithFormat(MsPortalFxTimeRangeModelFormat format)
         {
             _timeRangeFiler.Model.Format = format;
