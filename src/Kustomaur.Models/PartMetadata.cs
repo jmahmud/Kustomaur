@@ -10,6 +10,8 @@ namespace Kustomaur.Models
         
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Asset Asset { get; set; } 
+        
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public object Settings { get; set; }
 
         public PartMetadata()

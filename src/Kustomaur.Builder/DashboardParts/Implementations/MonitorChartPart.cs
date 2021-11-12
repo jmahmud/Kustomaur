@@ -74,7 +74,7 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             _part.Metadata.WithType("Extension/HubsExtension/PartType/MonitorChartPart");
             _part.Metadata.AddInput(new Input("sharedTimeRange", isOptional: true));
             _part.Metadata.AddInput(BuildChartInput());
-            _part.Metadata.Settings = new { };
+            _part.Metadata.Settings = null;
             _part.Metadata.Asset = new Asset()
             {
                 IdInputName = "ComponentId",
