@@ -12,6 +12,11 @@ namespace Kustomaur.Models
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public object Value { get; set; }
 
+        public T ValueAs<T>()
+        {
+            return (T)Value;
+        }
+
         public Input(string name, bool? isOptional = true, object value = null)
         {
             Name = name;

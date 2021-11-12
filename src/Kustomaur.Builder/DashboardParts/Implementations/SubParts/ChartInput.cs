@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Kustomaur.Models;
 
@@ -27,6 +28,13 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
         public ChartInputValueChart()
         {
             TitleKind = 1;
+            Timespan = new ChartInputValueChartTimespan();
+            Grouping = new ChartInputValueChartGrouping();
+            Visualization = new ChartInputValueChartVisualisation();
+            Metrics = new List<ChartInputValueChartMetric>()
+            {
+                new ChartInputValueChartMetric()
+            };
         }
         public int TitleKind { get; set; }
         
@@ -37,6 +45,8 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
         public ChartInputValueChartGrouping Grouping { get; set; }
         
         public ChartInputValueChartVisualisation Visualization { get; set; }
+
+        public List<ChartInputValueChartMetric> Metrics { get; set; }
     }
 
     public class ChartInputValueChartTimespan
@@ -51,6 +61,7 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
         {
             ShowUTCTime = true;
             Relative = new ChartInputValueChartTimespanRelative();
+            Grain = 1;
         }
     }
 
@@ -85,12 +96,15 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
         public LegendVisualisation LegendVisualization { get; set; }
         
         public AxisVisualisation AxisVisualization { get; set; }
+        
+        public bool DisablePinning { get; set; }
 
         public ChartInputValueChartVisualisation()
         {
             ChartType = 2;
             LegendVisualization = new LegendVisualisation();
             AxisVisualization = new AxisVisualisation();
+            DisablePinning = true;
         }
     }
 
@@ -125,4 +139,32 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
         public bool IsVisible { get; set; }
         public int AxisType { get; set; }
     }
+
+    public class ChartInputValueChartMetric
+    {
+        public ChartInputValueChartMetricResourceMetadata ResourceMetadata { get; set; }
+        public string Name { get; set; }
+        public int AggregationType { get; set; }
+        public string Namespace { get; set; }
+        public MetricVisualisation MetricVisualization { get; set; }
+
+        public ChartInputValueChartMetric()
+        {
+            ResourceMetadata = new ChartInputValueChartMetricResourceMetadata();
+            MetricVisualization = new MetricVisualisation();
+            Namespace = "microsoft.web/serverfarms";
+            AggregationType = 4;
+        }
+    }
+
+    public class ChartInputValueChartMetricResourceMetadata
+    {
+        public string Id { get; set; }
+    }
+
+    public class MetricVisualisation
+    {
+        public string DisplayName { get; set; }
+    }
+    
 }
