@@ -5,6 +5,7 @@
         <RootNamespace>Kustomaur.Dashboard</RootNamespace>
         <Authors>Joshan Mahmud</Authors>
         <RepositoryUrl>https://github.com/jmahmud/Kustomaur</RepositoryUrl>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
