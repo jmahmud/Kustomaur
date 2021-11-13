@@ -3,6 +3,8 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <RootNamespace>Kustomaur.Dashboard</RootNamespace>
+        <Authors>Joshan Mahmud</Authors>
+        <RepositoryUrl>https://github.com/jmahmud/Kustomaur</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>
