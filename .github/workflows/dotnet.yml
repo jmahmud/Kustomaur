@@ -40,10 +40,10 @@ jobs:
       run: dotnet restore
       
     - name: Build
-      run: dotnet build --configuration $BUILD_CONFIG --no-restore
+      run: dotnet build --configuration $env:$BUILD_CONFIG --no-restore
       
     - name: Test
-      run: dotnet test --configuration $BUILD_CONFIG --no-build --verbosity normal
+      run: dotnet test --configuration $env:$BUILD_CONFIG --no-build --verbosity normal
       
    - name: Publish
       if: startsWith(github.ref, 'refs/heads/release')
