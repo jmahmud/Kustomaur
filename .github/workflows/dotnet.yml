@@ -41,10 +41,10 @@ jobs:
       run: dotnet restore
       
     - name: Build
-      run: dotnet build --configuration $env:$BUILD_CONFIG /p:Platform:"$env:BUILD_PLATFORM" --no-restore
+      run: dotnet build --configuration $env:$BUILD_CONFIG /p:Platform:"AnyCPU" --no-restore
       
     - name: Test
-      run: dotnet test --configuration $env:$BUILD_CONFIG /p:Platform:"$env:BUILD_PLATFORM" --no-build --verbosity normal
+      run: dotnet test --configuration $env:$BUILD_CONFIG /p:Platform:"AnyCPU" --no-build --verbosity normal
       
     - name: Publish
       if: startsWith(github.ref, 'refs/heads/release')
