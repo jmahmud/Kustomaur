@@ -4,6 +4,8 @@
         <TargetFramework>net5.0</TargetFramework>
         <Authors>Joshan Mahmud</Authors>
         <RepositoryUrl>https://github.com/jmahmud/Kustomaur</RepositoryUrl>
+        <Configurations>Debug;Release</Configurations>
+        <Platforms>AnyCPU</Platforms>
     </PropertyGroup>
 
 </Project>
