@@ -14,7 +14,6 @@ jobs:
 
     env:
       BUILD_CONFIG: 'Release'
-      BUILD_PLATFORM: 'AnyCPU'
       
     runs-on: ubuntu-latest
 
