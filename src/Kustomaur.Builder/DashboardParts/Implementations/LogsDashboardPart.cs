@@ -196,6 +196,12 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             return this;
         }
         
+        public LogsDashboardPart WithSpecificChart(InputSpecificChart specificChart)
+        {
+            SpecificChart = specificChart;
+            return this;
+        }
+        
     }
 
     public class LogsDashboardPartSettingsContent
