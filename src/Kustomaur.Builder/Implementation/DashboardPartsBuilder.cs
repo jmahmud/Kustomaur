@@ -74,11 +74,32 @@ namespace Kustomaur.Dashboard.Implementation
             maxYPos = parts.Max(p => p.Position.RowSpan) + startYPos;
             return this;
         }
+
+        private int _startYPosForNextRow = 0;
+        public IDashboardPartBuilder AddPartsAsRow(List<Part> parts)
+        {
+            Part previousPart = null;
+            parts.ForEach(p =>
+            {
+                // Set the Y position
+                p.Position.Y = _startYPosForNextRow;
+                
+                // Set the X position (based upon previous part)
+                if (previousPart == null)
+                {
+                    previousPart = p;
+                }
+                else
+                {
+                    p.Position.X = previousPart.Position.X + previousPart.Position.ColSpan;
+                }
+                _parts.WithPart(p);
+            });
+            _startYPosForNextRow = parts.Max(p => p.Position.RowSpan) + _startYPosForNextRow;
+            return this;
+        }
         public IDashboardPartBuilder AddPartsAsColumn(List<Part> parts, out int maxXPos, int startXPos = 0)
         {
-            // parts.ForEach(p => p.Position.X = startXPos);
-            // maxXPos = parts.Max(p => p.Position.RowSpan) + startXPos;
-            // return this;
             Part previousPart = null;
             parts.ForEach(p =>
             {
@@ -97,6 +118,30 @@ namespace Kustomaur.Dashboard.Implementation
                 _parts.WithPart(p);
             });
             maxXPos = parts.Max(p => p.Position.ColSpan) + startXPos;
+            return this;
+        }
+        
+        private int _startXPosForNextColumn = 0;
+        public IDashboardPartBuilder AddPartsAsColumn(List<Part> parts)
+        {
+            Part previousPart = null;
+            parts.ForEach(p =>
+            {
+                // Set the X position
+                p.Position.X = _startXPosForNextColumn;
+                
+                // Set the Y position (based upon previous part)
+                if (previousPart == null)
+                {
+                    previousPart = p;
+                }
+                else
+                {
+                    p.Position.Y = previousPart.Position.Y + previousPart.Position.RowSpan;
+                }
+                _parts.WithPart(p);
+            });
+            _startXPosForNextColumn = parts.Max(p => p.Position.ColSpan) + _startXPosForNextColumn;
             return this;
         }
     }
