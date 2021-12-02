@@ -6,12 +6,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kustomaur.Models.Tests", "t
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4CED4C06-3BB0-4495-A92F-4132BD98B565}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{6AE7C222-993C-446E-A27A-92247BD826D9}"
-ProjectSection(SolutionItems) = preProject
-	Examples\example2.json = Examples\example2.json
-	Examples\example1.json = Examples\example1.json
-EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kustomaur.Builder", "src\Kustomaur.Builder\Kustomaur.Builder.csproj", "{D7129FA8-2BE1-4CB4-A5CC-35048FEDB5FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kustomaur.Builder.Tests", "tests\Kustomaur.Builder.Tests\Kustomaur.Builder.Tests.csproj", "{2D145FD9-7344-4892-A815-07302B2F7CC7}"
