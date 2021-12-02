@@ -6,6 +6,9 @@ using Kustomaur.Models.Filters;
 
 namespace Kustomaur.Dashboard.Implementation.DashboardMetadataModelBuilders
 {
+    /// <summary>
+    /// Adds a MsPortalFx_TimeRange type to the dashboard
+    /// </summary>
     public class TimeRangeFilterBuilder : IDashboardMetadataModelBuilder
     {
         private MsPortalFxTimeRange _timeRangeFiler = new MsPortalFxTimeRange();
@@ -54,9 +57,5 @@ namespace Kustomaur.Dashboard.Implementation.DashboardMetadataModelBuilders
             _timeRangeFiler.Model.Absolute = new MsPortalFxTimeRangeModelAbsolute(from, to);
             return this;
         }
-
-        
-        
-        
     }
 }
