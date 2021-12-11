@@ -20,7 +20,30 @@ A fluent dotnet/core SDK to generate Azure Dashboards
 ## Nuget
 Kustomaur.Builder is available on Nuget: https://www.nuget.org/packages/Kustomaur.Builder/
 
-## Getting Started
+## How To Use
+```cs
+// use the dashboard builder to start creating a dashboard
+var dashboard = new DashboardBuilder()
+                .WithName(name) // give it a name
+                .WithBuilder(new DashboardPartsBuilder() // to add parts, use a DashboardPartsBuilder
+                    .AddPart(new LogsDashboardPart() // this adds a LogsDashboardsPart (from Log Analytics)
+                        .WithTitle("My First Logs Dashboard Part") 
+                        .WithSubTitle("My First Subtitle")
+                        .WithInsightsComponentName("HwEgWebAppJosh") // this is the name of the Application Insights log analytics resource
+                        .WithQuery("requests\n| where success == false\n| render barchart\n") // the Kusto query you want to execute
+                        .WithSubscriptionId(subscriptionId) // the subscriptipn ID of where this should be
+                        .WithResourceGroup(resourceGroup) // the resource group of where this should be
+                        .GeneratePart())) // Generates a DashboardPart to be given to the builder
+                .Build(); Tells the DashboardBuilder to build the final Dashboard object
+
+// Generate the JSON with just the main properties (useful if you just need the JSON and want to deploy it via CLI / REST / Other deployment methods (e.g. Terraform)
+var dashboardPropertiesJson = Generator.Generate(dashboard.Properties);
+
+// Generats JSON for whole dashboard:
+var dashboardJson = Generator.Generate(dashboard);
+```
+_* currently Kustomaur does not support the ability to automatically create the dashboard in Azure, as it simply a JSON generation library - but this missing functionality is coming soon!!!!_
+## Overview
 Kustomaur is built with 2 layers:
 * **Kustomaur.Models**: POCOs representing the JSON classes in Azure Dashboards
 * **Kustomaur.Builders**: A set of fluent builders using higher level concepts to create & configure Azure Dashboards, which then produces a Kustomaur.Models.Dashboard object  
