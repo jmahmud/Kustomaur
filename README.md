@@ -42,11 +42,13 @@ var dashboardPropertiesJson = Generator.Generate(dashboard.Properties);
 // Generats JSON for whole dashboard:
 var dashboardJson = Generator.Generate(dashboard);
 ```
-_* currently Kustomaur does not support the ability to automatically create the dashboard in Azure, as it simply a JSON generation library - but this missing functionality is coming soon!!!!_
+_* currently Kustomaur does not support the ability to automatically create the dashboard in Azure, as it simply a JSON generation library - but this missing functionality is coming soon in Kustomaur.Azure!!!!_
 ## Overview
 Kustomaur is built with 2 layers:
 * **Kustomaur.Models**: POCOs representing the JSON classes in Azure Dashboards
-* **Kustomaur.Builders**: A set of fluent builders using higher level concepts to create & configure Azure Dashboards, which then produces a Kustomaur.Models.Dashboard object  
+* **Kustomaur.Builders**: A set of fluent builders using higher level concepts to create & configure Azure Dashboards, which then produces a Kustomaur.Models.Dashboard object
+
+_A third layer of **Kustomaur.Azure** will add further Azure Portal functionality to be able to create the dashboard and make it available in the portal_
 
 ## Features
 ### Dashboard Parts
