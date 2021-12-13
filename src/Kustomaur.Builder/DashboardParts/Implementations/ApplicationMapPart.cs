@@ -14,7 +14,10 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
         public override Part GeneratePart()
         {
             _part.WithPosition(_x, _y, _rowSpan, _colSpan);
-            _part.Metadata = new PartMetadata();
+            if (_part.Metadata == null)
+            {
+                _part.Metadata = new PartMetadata();
+            }
             _part.Metadata.WithType("Extension/AppInsightsExtension/PartType/AppMapGalPt");
             _part.Metadata.AddInput(new Input("ComponentId", value: BuildId(), isOptional: null));
             _part.Metadata.Settings = new { };
