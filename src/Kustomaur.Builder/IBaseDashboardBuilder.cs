@@ -3,7 +3,7 @@ namespace Kustomaur.Dashboard
     /// <summary>
     /// Implement for creating a builder to manipulate the dashboard.
     /// </summary>
-    public interface IBaseBuilder
+    public interface IBaseDashboardBuilder
     {
         /// <summary>
         /// Build will be called by the <see cref="DashboardBuilder"/> and should update the passed in <see cref="Models.Dashboard"/> object

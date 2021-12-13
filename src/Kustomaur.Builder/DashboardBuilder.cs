@@ -31,7 +31,7 @@ namespace Kustomaur.Dashboard
 
         private IDashboardMetadataModelBuilder _timeRangeFilterBuilder;
 
-        private readonly List<IBaseBuilder> _builders;
+        private readonly List<IBaseDashboardBuilder> _builders;
         
         private string _filterLocale = "en-us";
         
@@ -39,7 +39,7 @@ namespace Kustomaur.Dashboard
         {
             _timeRangeBuilder = new TimeRangeBuilder();
             _timeRangeFilterBuilder = new TimeRangeFilterBuilder();
-            _builders = new List<IBaseBuilder>();
+            _builders = new List<IBaseDashboardBuilder>();
             _dashboard = new Models.Dashboard();
             InitialiseDashboardPropertiesMetadataModel();
 
@@ -96,9 +96,9 @@ namespace Kustomaur.Dashboard
         /// <summary>
         /// To set any builder to further manipulate the dashboard.  The DashboardBuilder will call all of the builders that are set sequentially
         /// </summary>
-        /// <param name="builder">See <see cref="IBaseBuilder"/></param>
+        /// <param name="builder">See <see cref="IBaseDashboardBuilder"/></param>
         /// <returns></returns>
-        public DashboardBuilder WithBuilder(IBaseBuilder builder)
+        public DashboardBuilder WithBuilder(IBaseDashboardBuilder builder)
         {
             _builders.Add(builder);
             return this;
@@ -155,7 +155,7 @@ namespace Kustomaur.Dashboard
 
         private void CombineAndRunBuilders()
         {
-            var builders = new List<IBaseBuilder>();
+            var builders = new List<IBaseDashboardBuilder>();
             builders.AddRange(_builders);
             builders.Add(_timeRangeBuilder);
             builders.Add(_timeRangeFilterBuilder);

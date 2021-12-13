@@ -1,6 +1,8 @@
 using System;
 using Kustomaur.Dashboard;
+using Kustomaur.Dashboard.Implementation;
 using Kustomaur.Dashboard.Implementation.DashboardMetadataModelBuilders;
+using Kustomaur.Models;
 using Kustomaur.Models.Filters;
 using Xunit;
 
@@ -122,6 +124,31 @@ namespace Kustomaur.Builder.Tests.DashboardFilters
             Assert.Equal(
                 "{\"properties\":{\"lenses\":null,\"metadata\":{\"model\":{\"filters\":{\"value\":{\"MsPortalFx_TimeRange\":{\"model\":{\"format\":\"utc\",\"granularity\":\"auto\",\"absolute\":{\"fromDate\":\"" + then.ToString("yyyy-MM-ddTHH:mm:ss.ffffZ") + "\",\"toDate\":\"" + now.ToString("yyyy-MM-ddTHH:mm:ss.ffffZ") + "\"}},\"displayCache\":{\"name\":\"UTC Time\",\"value\":null},\"filteredPartIds\":[]}}},\"timeRange\":{\"value\":{\"relative\":{\"duration\":24,\"timeUnit\":1}},\"type\":\"MsPortalFx.Composition.Configuration.ValueTypes.TimeRange\"},\"filterLocale\":{\"value\":\"en-us\"}}}},\"name\":\"ce043e69-f9f3-4618-bbe2-2a93e769b56d\",\"type\":\"Microsoft.Portal/dashboards\",\"location\":null,\"tags\":{\"hidden-title\":\"ce043e69-f9f3-4618-bbe2-2a93e769b56d\"}}",
                 Dashboard.Generator.Generate(dashboard));
+        }
+
+        [Fact]
+        public void CanCreateAFilterOnAPart()
+        {
+            var part = new Part();
+            
+            IBasePartsBuilder builder = new TimeRangeFilterBuilder()
+                .WithFormat(MsPortalFxTimeRangeModelFormat.Utc)
+                .WithGranularity(MsPortalFxTimeRangeModelGranularity.Auto)
+                .WithRelative(MsPortalFxTimeRangeModelRelative.Days7);
+            builder.Build(part);
+            
+            var subscriptionId = "6b062fa3-dbe5-4e4a-8d54-ce7286ec9ef6";
+            var resourceGroup = Guid.NewGuid().ToString();
+            var name = "ce043e69-f9f3-4618-bbe2-2a93e769b56d";
+            var dashboard = new DashboardBuilder()
+                .WithSubscription(subscriptionId)
+                .WithResourceGroup(resourceGroup)
+                .WithName(name)
+                .WithBuilder(new DashboardPartsBuilder()
+                    .AddPart(part))
+                .Build();
+            
+            Assert.Equal("{\"lenses\":{\"0\":{\"order\":0,\"parts\":{\"0\":{\"position\":null,\"metadata\":{\"type\":null,\"inputs\":null,\"settings\":{\"content\":null},\"filters\":{\"MsPortalFx_TimeRange\":{\"model\":{\"format\":\"utc\",\"granularity\":\"auto\",\"relative\":\"7d\"}}}}}}}},\"metadata\":{\"model\":{\"timeRange\":{\"value\":{\"relative\":{\"duration\":24,\"timeUnit\":1}},\"type\":\"MsPortalFx.Composition.Configuration.ValueTypes.TimeRange\"},\"filters\":{\"value\":{\"MsPortalFx_TimeRange\":{\"model\":{\"format\":\"utc\",\"granularity\":\"auto\",\"relative\":\"24h\"},\"displayCache\":{\"name\":\"UTC Time\",\"value\":\"Past 24 hours\"},\"filteredPartIds\":[]}}},\"filterLocale\":{\"value\":\"en-us\"}}}}", Generator.Generate(dashboard.Properties));
         }
     }
 }

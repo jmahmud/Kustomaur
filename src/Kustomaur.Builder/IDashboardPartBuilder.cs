@@ -7,7 +7,7 @@ namespace Kustomaur.Dashboard
     /// <summary>
     /// Implement this in order to create a builder to add <see cref="DashboardParts.DashboardPart"/> to a dashboard
     /// </summary>
-    public interface IDashboardPartBuilder : IBaseBuilder
+    public interface IDashboardPartBuilder : IBaseDashboardBuilder
     { 
         /// <summary>
         /// Adds a part to the builder's dashboard

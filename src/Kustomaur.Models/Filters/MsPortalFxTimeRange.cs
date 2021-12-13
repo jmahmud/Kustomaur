@@ -9,11 +9,17 @@ namespace Kustomaur.Models.Filters
     {
         public MsPortalFxTimeRangeModel Model { get; set; }
         
-        public MsPortalFxTimeRangeDisplayCache DisplayCache => CalculateDisplayCache();
+        [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
+        public bool DisplayCacheEnabled { get; set; }
+        
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public MsPortalFxTimeRangeDisplayCache DisplayCache => DisplayCacheEnabled ? CalculateDisplayCache() : null;
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<string> FilteredPartIds { get; set; }
 
         public MsPortalFxTimeRange()
         {
+            DisplayCacheEnabled = true;
             FilteredPartIds = new List<string>();
             Model = new MsPortalFxTimeRangeModel();
         }
