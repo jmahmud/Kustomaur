@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Kustomaur.Models;
 
 namespace Kustomaur.Dashboard.DashboardParts
@@ -14,9 +15,12 @@ namespace Kustomaur.Dashboard.DashboardParts
 
         protected string _resourceGroup;
 
+        private List<IBasePartsBuilder> _partsBuilder;
+
         public DashboardPart()
         {
             _part = new Part();
+            _partsBuilder = new List<IBasePartsBuilder>();
         }
         public virtual Part GeneratePart()
         {
@@ -57,5 +61,14 @@ namespace Kustomaur.Dashboard.DashboardParts
             _resourceGroup = resourceGroup;
             return this;
         }
+        
+        public DashboardPart WithBuilder(IBasePartsBuilder partsBuilder)
+        {
+            partsBuilder.Build(_part);
+            _partsBuilder.Add(partsBuilder);
+            return this;
+        }
+
+
     }
 }
