@@ -82,17 +82,16 @@ namespace Kustomaur.Dashboard.Implementation
             {
                 // Set the Y position
                 p.Position.Y = startYPos;
-                
-                // Set the X position (based upon previous part)
-                if (previousPart == null)
+
+                if (previousPart != null)
                 {
-                    previousPart = p;
-                }
-                else
-                {
+                    // Set the X position (based upon previous part)
                     p.Position.X = previousPart.Position.X + previousPart.Position.ColSpan;
                 }
                 _parts.WithPart(p);
+
+                previousPart = p;
+                
             });
             maxYPos = parts.Max(p => p.Position.RowSpan) + startYPos;
             return this;
@@ -111,16 +110,14 @@ namespace Kustomaur.Dashboard.Implementation
                 // Set the Y position
                 p.Position.Y = _startYPosForNextRow;
                 
-                // Set the X position (based upon previous part)
-                if (previousPart == null)
+                if (previousPart != null)
                 {
-                    previousPart = p;
-                }
-                else
-                {
+                    // Set the X position (based upon previous part)
                     p.Position.X = previousPart.Position.X + previousPart.Position.ColSpan;
                 }
                 _parts.WithPart(p);
+
+                previousPart = p;
             });
             _startYPosForNextRow = parts.Max(p => p.Position.RowSpan) + _startYPosForNextRow;
             return this;
@@ -140,16 +137,16 @@ namespace Kustomaur.Dashboard.Implementation
                 // Set the X position
                 p.Position.X = startXPos;
                 
-                // Set the Y position (based upon previous part)
-                if (previousPart == null)
+                if (previousPart != null)
                 {
-                    previousPart = p;
-                }
-                else
-                {
+                    // Set the Y position (based upon previous part)
                     p.Position.Y = previousPart.Position.Y + previousPart.Position.RowSpan;
                 }
+
                 _parts.WithPart(p);
+                
+                previousPart = p;
+
             });
             maxXPos = parts.Max(p => p.Position.ColSpan) + startXPos;
             return this;
@@ -167,16 +164,16 @@ namespace Kustomaur.Dashboard.Implementation
                 // Set the X position
                 p.Position.X = _startXPosForNextColumn;
                 
-                // Set the Y position (based upon previous part)
-                if (previousPart == null)
+                if (previousPart != null)
                 {
-                    previousPart = p;
-                }
-                else
-                {
+                    // Set the Y position (based upon previous part)
                     p.Position.Y = previousPart.Position.Y + previousPart.Position.RowSpan;
                 }
+
                 _parts.WithPart(p);
+                
+                previousPart = p;
+
             });
             _startXPosForNextColumn = parts.Max(p => p.Position.ColSpan) + _startXPosForNextColumn;
             return this;
