@@ -62,6 +62,12 @@ namespace Kustomaur.Dashboard.DashboardParts
             return this;
         }
         
+        public DashboardPart WithSettings(PartMetadataSettings settings)
+        {
+            _part.Metadata.Settings = settings;
+            return this;
+        }
+        
         public DashboardPart WithBuilder(IBasePartsBuilder partsBuilder)
         {
             partsBuilder.Build(_part);

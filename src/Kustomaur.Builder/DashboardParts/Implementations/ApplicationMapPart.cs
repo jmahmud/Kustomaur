@@ -20,7 +20,13 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             }
             _part.Metadata.WithType("Extension/AppInsightsExtension/PartType/AppMapGalPt");
             _part.Metadata.AddInput(new Input("ComponentId", value: BuildId(), isOptional: null));
-            _part.Metadata.Settings = new { };
+
+            var settings = _part.Metadata.Settings as PartMetadataSettings;
+            if (settings?.Content == null)
+            {
+                _part.Metadata.Settings = new { };                
+            }
+
             _part.Metadata.Asset = new Asset()
             {
                 IdInputName = "ComponentId",
