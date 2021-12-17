@@ -13,10 +13,14 @@ namespace Kustomaur.Models
         
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public object Settings { get; set; }
+        
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public Dictionary<string, object> Filters { get; set; }
 
         public PartMetadata()
         {
             Settings = new PartMetadataSettings();
+            Filters = null;
         }
 
         public PartMetadata WithType(string type)

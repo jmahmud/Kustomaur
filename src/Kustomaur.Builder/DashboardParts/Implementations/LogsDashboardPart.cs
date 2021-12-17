@@ -42,15 +42,18 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
         public override Part GeneratePart()
         {
             _part.WithPosition(_x, _y, _rowSpan, _colSpan);
-            _part.Metadata = new PartMetadata();
+            if (_part.Metadata == null)
+            {
+                _part.Metadata = new PartMetadata();
+            }
             _part.Metadata.WithType("Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart");
             SetInputs();
             _part.Metadata.Inputs = Inputs;
-            _part.Metadata.Settings = new {};
-            // _part.Metadata.Settings.Content = new LogsDashboardPartSettingsContent()
-            // {
-            //     Query = KustoQuery
-            // };
+            var settings = _part.Metadata.Settings as PartMetadataSettings;
+            if (settings?.Content == null)
+            {
+                _part.Metadata.Settings = new { };                
+            }
             return _part;
         }
 

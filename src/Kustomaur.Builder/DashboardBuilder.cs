@@ -5,20 +5,33 @@ using Kustomaur.Models;
 
 namespace Kustomaur.Dashboard
 {
+    /// <summary>
+    /// This is the main class that generates the object model for a dashboard.  Call Build() to produce the Dashboard object.
+    /// </summary>
     public class DashboardBuilder
     {
+        /// <summary>
+        /// Set to the Azure Subscription Id that the dashboard would be created in
+        /// </summary>
         public string SubscriptionId { get; private set; }
+        
+        /// <summary>
+        /// Set to the Azure Resource Group name that the dashboard would be created in
+        /// </summary>
         public string ResourceGroup { get; private set; }
+        
+        /// <summary>
+        /// The name of the dashboard used in the Azure Portal
+        /// </summary>
         public string Name { get; private set; }
 
-        public Models.Dashboard Dashboard { get; }
-
+        private Models.Dashboard _dashboard;
 
         private IDashboardMetadataModelBuilder _timeRangeBuilder;
 
         private IDashboardMetadataModelBuilder _timeRangeFilterBuilder;
 
-        private readonly List<IBaseBuilder> _builders;
+        private readonly List<IBaseDashboardBuilder> _builders;
         
         private string _filterLocale = "en-us";
         
@@ -26,46 +39,76 @@ namespace Kustomaur.Dashboard
         {
             _timeRangeBuilder = new TimeRangeBuilder();
             _timeRangeFilterBuilder = new TimeRangeFilterBuilder();
-            _builders = new List<IBaseBuilder>();
-            Dashboard = new Models.Dashboard();
+            _builders = new List<IBaseDashboardBuilder>();
+            _dashboard = new Models.Dashboard();
             InitialiseDashboardPropertiesMetadataModel();
 
         }
+        /// <summary>
+        /// Sets the Azure Subscription Id that the dashboard would be created in
+        /// </summary>
+        /// <param name="subscriptionId">Should be a GUID</param>
+        /// <returns></returns>
         public DashboardBuilder WithSubscription(string subscriptionId)
         {
             SubscriptionId = subscriptionId;
             return this;
         }
-        
+
+        /// <summary>
+        /// Sets the Azure Resource Group that the dashboard would be created in
+        /// </summary>
+        /// <param name="resourceGroup">Should be the name of the resource group</param>
+        /// <returns></returns>
         public DashboardBuilder WithResourceGroup(string resourceGroup)
         {
             ResourceGroup = resourceGroup;
             return this;
         }
         
+        /// <summary>
+        /// To set the name of the dashboard
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public DashboardBuilder WithName(string name)
         {
             Name = name;
-            if (Dashboard.Tags == null)
+            if (_dashboard.Tags == null)
             {
-                Dashboard.Tags = new Dictionary<string, string>();
+                _dashboard.Tags = new Dictionary<string, string>();
             }
-            Dashboard.Tags.Add("hidden-title", name);
+            _dashboard.Tags.Add("hidden-title", name);
             return this;
         }
 
+        /// <summary>
+        /// To set the builder for TimeRange 
+        /// </summary>
+        /// <param name="builder">See <see cref="TimeRangeBuilder"/></param>
+        /// <returns></returns>
         public DashboardBuilder WithTimeRangeBuilder(TimeRangeBuilder builder)
         {
             _timeRangeBuilder = builder;
             return this;
         }
         
-        public DashboardBuilder WithBuilder(IBaseBuilder builder)
+        /// <summary>
+        /// To set any builder to further manipulate the dashboard.  The DashboardBuilder will call all of the builders that are set sequentially
+        /// </summary>
+        /// <param name="builder">See <see cref="IBaseDashboardBuilder"/></param>
+        /// <returns></returns>
+        public DashboardBuilder WithBuilder(IBaseDashboardBuilder builder)
         {
             _builders.Add(builder);
             return this;
         }
         
+        /// <summary>
+        /// To set the locale.  Default is 'en-us'
+        /// </summary>
+        /// <param name="locale"></param>
+        /// <returns></returns>
         public DashboardBuilder WithFilterLocale(string locale)
         {
             _filterLocale = locale;
@@ -74,48 +117,51 @@ namespace Kustomaur.Dashboard
         
         private void InitialiseDashboardPropertiesMetadataModel()
         {
-            if (Dashboard.Properties == null)
+            if (_dashboard.Properties == null)
             {
-                Dashboard.Properties = new DashboardProperties();
+                _dashboard.Properties = new DashboardProperties();
             }
 
-            if (Dashboard.Properties.Metadata == null)
+            if (_dashboard.Properties.Metadata == null)
             {
-                Dashboard.Properties.Metadata = new PropertiesMetadata();
+                _dashboard.Properties.Metadata = new PropertiesMetadata();
             }
 
-            if (Dashboard.Properties.Metadata.Model == null)
+            if (_dashboard.Properties.Metadata.Model == null)
             {
-                Dashboard.Properties.Metadata.Model = new Dictionary<string, DashboardPropertiesMetadataModel>();
+                _dashboard.Properties.Metadata.Model = new Dictionary<string, DashboardPropertiesMetadataModel>();
             }
         }
 
+        /// <summary>
+        /// Combines and runs all builders to generate a Models.Dashboard which is of type: Microsoft.Portal/dashboards
+        /// </summary>
+        /// <returns></returns>
         public Models.Dashboard Build()
         {
-            //Dashboard.Id = BuildId();
-            Dashboard.Type = "Microsoft.Portal/dashboards";
-            Dashboard.Name = Name;
+            _dashboard.Type = "Microsoft.Portal/dashboards";
+            _dashboard.Name = Name;
 
             // Run each builder
             CombineAndRunBuilders();
             
             //Set filter locale
-            Dashboard.Properties.Metadata.Model.Add("filterLocale", new DashboardPropertiesMetadataModel() { Value = _filterLocale });
+            _dashboard.Properties.Metadata.Model.Add("filterLocale", new DashboardPropertiesMetadataModel() { Value = _filterLocale });
             
             // Set Filters
 
-            return Dashboard;
+            return _dashboard;
         }
 
         private void CombineAndRunBuilders()
         {
-            var builders = new List<IBaseBuilder>();
+            var builders = new List<IBaseDashboardBuilder>();
             builders.AddRange(_builders);
             builders.Add(_timeRangeBuilder);
             builders.Add(_timeRangeFilterBuilder);
             builders.ForEach(b =>
             {
-                b.Build(Dashboard);
+                b.Build(_dashboard);
             });
         }
 

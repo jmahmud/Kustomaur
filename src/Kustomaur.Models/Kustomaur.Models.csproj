@@ -7,5 +7,4 @@
         <Configurations>Debug;Release</Configurations>
         <Platforms>Any CPU</Platforms>
     </PropertyGroup>
-
 </Project>

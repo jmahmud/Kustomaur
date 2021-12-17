@@ -1,6 +1,9 @@
 namespace Kustomaur.Dashboard
 {
-    public interface IDashboardMetadataModelBuilder : IBaseBuilder
+    /// <summary>
+    /// Implement this to create a builder which manipulates the metadata for the builder
+    /// </summary>
+    public interface IDashboardMetadataModelBuilder : IBaseDashboardBuilder
     {
         
     }

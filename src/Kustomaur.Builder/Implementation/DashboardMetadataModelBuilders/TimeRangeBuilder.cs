@@ -2,6 +2,9 @@ using Kustomaur.Models;
 
 namespace Kustomaur.Dashboard.Implementation.DashboardMetadataModelBuilders
 {
+    /// <summary>
+    /// Adds a MsPortalFx.Composition.Configuration.ValueTypes.TimeRange to the dashboard
+    /// </summary>
     public class TimeRangeBuilder : IDashboardMetadataModelBuilder
     {
         private int _duration;

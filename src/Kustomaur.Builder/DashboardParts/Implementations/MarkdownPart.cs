@@ -27,7 +27,10 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
         public override Part GeneratePart()
         {
             _part.WithPosition(_x, _y, _rowSpan, _colSpan);
-            _part.Metadata = new PartMetadata();
+            if (_part.Metadata == null)
+            {
+                _part.Metadata = new PartMetadata();
+            }
             _part.Metadata.WithType("Extension/HubsExtension/PartType/MarkdownPart");
             _part.Metadata.Inputs = new List<Input>();
             _part.Metadata.Settings = new
