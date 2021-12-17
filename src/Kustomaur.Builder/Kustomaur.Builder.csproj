@@ -8,6 +8,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Configurations>Debug;Release</Configurations>
         <Platforms>Any CPU</Platforms>
+        <PackageVersion>1.1.0</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>

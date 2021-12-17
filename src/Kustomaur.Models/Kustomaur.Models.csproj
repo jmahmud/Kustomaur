@@ -6,5 +6,6 @@
         <RepositoryUrl>https://github.com/jmahmud/Kustomaur</RepositoryUrl>
         <Configurations>Debug;Release</Configurations>
         <Platforms>Any CPU</Platforms>
+        <PackageVersion>1.1.0</PackageVersion>
     </PropertyGroup>
 </Project>
