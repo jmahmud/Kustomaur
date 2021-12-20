@@ -8,20 +8,42 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Configurations>Debug;Release</Configurations>
         <Platforms>Any CPU</Platforms>
-        <PackageVersion>1.1.0</PackageVersion>
+        <PackageVersion>1.1.2</PackageVersion>
+        <NuspecFile>Kustomaur.Builder.Nuspec</NuspecFile>
+        <NuspecProperties>version=$(PackageVersion);configuration=$(Configuration)</NuspecProperties>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Kustomaur.Models\Kustomaur.Models.csproj" />
     </ItemGroup>
+
+      
+<!--    <PropertyGroup>-->
+<!--        <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>-->
+<!--    </PropertyGroup>-->
+
+<!--    <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">-->
+<!--        <ItemGroup>-->
+<!--            &lt;!&ndash; Filter out unnecessary files &ndash;&gt;-->
+<!--            <_ReferenceCopyLocalPaths Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')->WithMetadataValue('PrivateAssets', 'All'))"/>-->
+<!--        </ItemGroup>-->
+
+<!--        &lt;!&ndash; Print batches for debug purposes &ndash;&gt;-->
+<!--        <Message Text="Batch for .nupkg: ReferenceCopyLocalPaths = @(_ReferenceCopyLocalPaths), ReferenceCopyLocalPaths.DestinationSubDirectory = %(_ReferenceCopyLocalPaths.DestinationSubDirectory) Filename = %(_ReferenceCopyLocalPaths.Filename) Extension = %(_ReferenceCopyLocalPaths.Extension)" Importance="High" Condition="'@(_ReferenceCopyLocalPaths)' != ''" />-->
+
+<!--        <ItemGroup>-->
+<!--            &lt;!&ndash; Add file to package with consideration of sub folder. If empty, the root folder is chosen. &ndash;&gt;-->
+<!--            <BuildOutputInPackage Include="@(_ReferenceCopyLocalPaths)" TargetPath="%(_ReferenceCopyLocalPaths.DestinationSubDirectory)"/>-->
+<!--        </ItemGroup>-->
+<!--    </Target>-->
     
-    <PropertyGroup>
-        <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
-    </PropertyGroup>
-    <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
-        <ItemGroup>
-            <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
-        </ItemGroup>
-    </Target>
+<!--    <PropertyGroup>-->
+<!--        <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>-->
+<!--    </PropertyGroup>-->
+<!--    <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">-->
+<!--        <ItemGroup>-->
+<!--            <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />-->
+<!--        </ItemGroup>-->
+<!--    </Target>-->
 
 </Project>
