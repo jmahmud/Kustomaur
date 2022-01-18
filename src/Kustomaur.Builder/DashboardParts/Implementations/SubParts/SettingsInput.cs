@@ -11,5 +11,5 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
 
         public SettingsInput() : base("Settings")
         {}
-}
+    }
 }
