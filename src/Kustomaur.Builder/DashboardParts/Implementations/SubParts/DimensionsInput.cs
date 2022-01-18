@@ -28,7 +28,7 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
             return this;
         }
     }
-
+    
     public class DimensionsInputValue
     {
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
