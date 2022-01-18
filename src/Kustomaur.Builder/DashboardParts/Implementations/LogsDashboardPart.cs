@@ -34,10 +34,8 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             WithRowSpan(3);
             WithColSpan(3);
 
-            var settings = _part.Metadata.Settings as PartMetadataSettings;
-           
-            _part.Metadata.Settings = new { };                
             _part.Metadata = new PartMetadata();
+            _part.Metadata.Settings = new { };                
 
             //default dimensioninput
             DimensionsInput = new DimensionsInput();
