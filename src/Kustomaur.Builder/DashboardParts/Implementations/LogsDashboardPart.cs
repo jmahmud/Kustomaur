@@ -33,7 +33,8 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             // Default Row and Column
             WithRowSpan(3);
             WithColSpan(3);
-            
+            _part.Metadata.Settings = new { };                
+
             //default dimensioninput
             DimensionsInput = new DimensionsInput();
             Inputs = new List<Input>();
@@ -49,11 +50,7 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             _part.Metadata.WithType("Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart");
             SetInputs();
             _part.Metadata.Inputs = Inputs;
-            var settings = _part.Metadata.Settings as PartMetadataSettings;
-            if (settings?.Content == null)
-            {
-                _part.Metadata.Settings = new { };                
-            }
+         
             return _part;
         }
 
