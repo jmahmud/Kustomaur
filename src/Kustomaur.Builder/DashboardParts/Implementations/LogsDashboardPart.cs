@@ -37,7 +37,8 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             var settings = _part.Metadata.Settings as PartMetadataSettings;
            
             _part.Metadata.Settings = new { };                
-       
+            _part.Metadata = new PartMetadata();
+
             //default dimensioninput
             DimensionsInput = new DimensionsInput();
             Inputs = new List<Input>();
