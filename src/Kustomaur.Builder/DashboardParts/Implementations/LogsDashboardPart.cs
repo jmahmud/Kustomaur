@@ -34,10 +34,6 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             WithRowSpan(3);
             WithColSpan(3);
 
-            if (_part.Metadata == null)
-            {
-                _part.Metadata = new PartMetadata();
-            }
             var settings = _part.Metadata.Settings as PartMetadataSettings;
            
             _part.Metadata.Settings = new { };                
@@ -53,7 +49,10 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             _part.Metadata.WithType("Extension/Microsoft_OperationsManagementSuite_Workspace/PartType/LogsDashboardPart");
             SetInputs();
             _part.Metadata.Inputs = Inputs;
-         
+             if (_part.Metadata == null)
+            {
+                _part.Metadata = new PartMetadata();
+            }
             return _part;
         }
 
