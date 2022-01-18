@@ -33,6 +33,10 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             // Default Row and Column
             WithRowSpan(3);
             WithColSpan(3);
+            if (_part.Metadata == null)
+            {
+                _part.Metadata = new PartMetadata();
+            }
             _part.Metadata.Settings = new { };                
 
             //default dimensioninput
