@@ -5,7 +5,7 @@
 
 A fluent dotnet/core SDK to generate Azure Dashboards
 
-![Code to Dashboard](https://raw.githubusercontent.com/jmahmud/Kustomaur/feature/documentation/images/CodeToDashboardImage.png)
+![Code to Dashboard](https://raw.githubusercontent.com/jmahmud/Kustomaur/main/images/CodeToDashboardImage.png)
 
 ## Contents
 
@@ -51,11 +51,135 @@ Kustomaur is built with 2 layers:
 _A third layer of **Kustomaur.Azure** will add further Azure Portal functionality to be able to create the dashboard and make it available in the portal_
 
 ## Features
-### Dashboard Parts
+### Dashboard Parts / Part Types
+Current Dashboard Parts that are supported:
 
-### Adding Rows/Columns
+|Name|Description|Example(s)|
+|----|-----------|---|
+|ApplicationMapPart|Generates an application map for the ApplicationInsights ID that is set for this part|[ApplicationMapTests](https://github.com/jmahmud/Kustomaur/blob/main/tests/Kustomaur.Builder.Tests/DashboardParts/ApplicationMapPartTests.cs)|
+|LogsDashboardPart|This is a part that can be added to dashboard that stems from a Azure Log Analytics - a Kusto query can be set as well as defining the dimensions and rendering options|[LogDashboardTests](https://github.com/jmahmud/Kustomaur/blob/main/tests/Kustomaur.Builder.Tests/DashboardParts/LogsDashboardPartTests.cs)|
+|MarkdownPart|Part which allows to create markdown|[Simple Dashboard with Markdown](https://github.com/jmahmud/Kustomaur/blob/db97d22fe20f5f1eca947bb38bc2e6f01ec61d0f/tests/Kustomaur.Builder.Tests/DashboardBuilderTests.cs#L35)|
+|MonitorChartPart|This part allows the display of a Monitor chart, for example the machine stats in a serverFarm|[MonitorChartPartTests](https://github.com/jmahmud/Kustomaur/blob/main/tests/Kustomaur.Builder.Tests/DashboardParts/MonitorChartPartTests.cs)|
 
-## Outstanding/ToDo 
+Other parts will be supported in future, but for ones that are not, new ones can be easily added by inheriting: [DashboardPart](https://github.com/jmahmud/Kustomaur/blob/main/src/Kustomaur.Builder/DashboardParts/DashboardPart.cs) class.
+### Adding Parts in Rows/Columns
+Adding multiple parts in a single row or column is straight forward with Kustomaur.  
+
+In order to add multiple parts in a single row can be done as a single list:
+```cs
+  var dashboard = new DashboardBuilder()
+  .WithSubscription(subscriptionId)
+  .WithResourceGroup(resourceGroup)
+  .WithName(name)
+  .WithBuilder(new DashboardPartsBuilder()
+      .AddPartsAsRow(new List<Part>()
+      {
+          new MarkdownPart(content:"# my first part in 1st row")
+              .WithColSpan(3)
+              .GeneratePart(),
+          new MarkdownPart(content:"# my second part in 1st row")
+              .WithColSpan(3)
+              .GeneratePart()
+      })
+      .AddPartsAsRow(new List<Part>()
+      {
+          new MarkdownPart(content:"# my first part in 2nd row")
+              .WithColSpan(4)
+              .GeneratePart(),
+          new MarkdownPart(content:"# my second part in 2nd row")
+              .WithColSpan(4)
+              .GeneratePart()
+      })
+  .Build();
+```
+The same can be done as adding multiple parts in a column:
+```cs
+var dashboard = new DashboardBuilder()
+    .WithSubscription(subscriptionId)
+    .WithResourceGroup(resourceGroup)
+    .WithName(name)
+    .WithBuilder(new DashboardPartsBuilder()
+        .AddPartsAsColumn(new List<Part>()
+        {
+            new MarkdownPart(content:"# my first part in 1st column")
+                .WithRowSpan(3)
+                .GeneratePart(),
+            new MarkdownPart(content:"# my second part in 1st column")
+                .WithRowSpan(3)
+                .GeneratePart()
+        }) 
+        .AddPartsAsColumn(new List<Part>()
+        {
+            new MarkdownPart(content:"# my first part in 2nd column")
+                .WithRowSpan(4)
+                .GeneratePart(),
+            new MarkdownPart(content:"# my second part in 2nd column")
+                .WithRowSpan(4)
+                .GeneratePart()
+        })
+    .Build();
+```
+
+This can also be done in combination:
+```cs
+ var dashboard = new DashboardBuilder()
+                .WithSubscription(subscriptionId)
+                .WithResourceGroup(resourceGroup)
+                .WithName(name)
+                .WithBuilder(new DashboardPartsBuilder()
+                    .AddPartsAsColumn(new List<Part>()
+                    {
+                        new MarkdownPart(content:"# my first part in 1st column")
+                            .WithRowSpan(3).WithColSpan(2)
+                            .GeneratePart(),
+                        new MarkdownPart(content:"# my second part in 1st column")
+                            .WithRowSpan(3).WithColSpan(2)
+                            .GeneratePart()
+                    }, out int firstColumnMaxX) // firstRowMaxY is what we should set the new row Y value
+                    .AddPartsAsColumn(new List<Part>()
+                    {
+                        new MarkdownPart(content:"# my first part in 2nd column")
+                            .WithRowSpan(4).WithColSpan(2)
+                            .GeneratePart(),
+                        new MarkdownPart(content:"# my second part in 2nd column")
+                            .WithRowSpan(4).WithColSpan(2)
+                            .GeneratePart()
+                    }, out int secondColumnMaxX, startXPos:firstColumnMaxX)
+                    .AddPartsAsColumn(new List<Part>()
+                    {
+                        new MarkdownPart(content:"# my first part in 3rd column")
+                            .WithRowSpan(5).WithColSpan(2)
+                            .GeneratePart(),
+                        new MarkdownPart(content:"# my second part in 3rd column")
+                            .WithRowSpan(5).WithColSpan(2)
+                            .GeneratePart()
+                    }, out int thirdColumnMaxX, startXPos:secondColumnMaxX)
+                    .AddPartsAsRow(new List<Part>()
+                    {
+                        new MarkdownPart(content: "# my first part in the 4th column - as 1st row")
+                            .WithX(thirdColumnMaxX)
+                            .WithRowSpan(10).WithColSpan(6)
+                            .GeneratePart(),
+                        new MarkdownPart(content: "# my second part in the 5th column - as 1st row")
+                            .WithX(thirdColumnMaxX)
+                            .WithRowSpan(10).WithColSpan(6)
+                            .GeneratePart()
+                    }, out int firstRowMaxY)
+                    .AddPartsAsRow(new List<Part>()
+                    {
+                        new MarkdownPart(content: "# my first part in the 4th column - as 2nd row")
+                            .WithX(thirdColumnMaxX)
+                            .WithRowSpan(10).WithColSpan(6)
+                            .GeneratePart(),
+                        new MarkdownPart(content: "# my second part in the 5th column - as 2nd row")
+                            .WithX(thirdColumnMaxX)
+                            .WithRowSpan(10).WithColSpan(6)
+                            .GeneratePart()
+                    }, out int secondRowMaxY, startYPos: firstRowMaxY)
+                )
+                .Build();
+```
+You will notice that `AddPartsAsRow()` has an overload which has an out parameter, which is set to the large Y position out of all of the parts in the row.  This value can be used incase new parts were to be added underneath the row (not using another `AddPartAsRow()`).  The same logic applies to `AddPArtsAsColumns` where the out parameter is set to the value of the component with the largest width/X value.
 
 ## Why?
 Currently, it is suggested (here: [Azure Portal Dashboards Create Programmatically](https://docs.microsoft.com/en-us/azure/azure-portal/azure-portal-dashboards-create-programmatically)), that the programmatic generation of an Azure Dashboard starts off with creating the dashboard by hand within the Azure Portal, exporting it as JSON, converting to a template (with parameters by hand), and then using a deployment method via CLI/Powershell/REST API  to upload the template.
