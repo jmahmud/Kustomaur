@@ -7,7 +7,7 @@
         <RepositoryUrl>https://github.com/jmahmud/Kustomaur</RepositoryUrl>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Configurations>Debug;Release</Configurations>
-        <Platforms>Any CPU</Platforms>
+        <Platforms>linux-x64;win-x64;</Platforms>
         <PackageVersion>1.2.0</PackageVersion>
         <NuspecFile>Kustomaur.Builder.Nuspec</NuspecFile>
         <NuspecProperties>version=$(PackageVersion);configuration=$(Configuration)</NuspecProperties>

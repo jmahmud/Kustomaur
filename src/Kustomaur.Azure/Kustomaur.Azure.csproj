@@ -5,7 +5,7 @@
         <Authors>Joshan Mahmud</Authors>
         <RepositoryUrl>https://github.com/jmahmud/Kustomaur</RepositoryUrl>
         <Configurations>Debug;Release</Configurations>
-        <Platforms>Any CPU</Platforms>
+        <Platforms>linux-x64;win-x64;</Platforms>
     </PropertyGroup>
 
     <ItemGroup>

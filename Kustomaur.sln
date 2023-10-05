@@ -1,7 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kustomaur.Models", "src\Kustomaur.Models\Kustomaur.Models.csproj", "{9DE7E72A-4AE5-4123-B205-A7360CEF2D30}"
 EndProject
@@ -28,7 +27,6 @@ Global
 		{9DE7E72A-4AE5-4123-B205-A7360CEF2D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DE7E72A-4AE5-4123-B205-A7360CEF2D30}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4544108D-E7F3-498A-917B-90BC5831E26C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4544108D-E7F3-498A-917B-90BC5831E26C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4544108D-E7F3-498A-917B-90BC5831E26C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4544108D-E7F3-498A-917B-90BC5831E26C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7129FA8-2BE1-4CB4-A5CC-35048FEDB5FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -36,15 +34,12 @@ Global
 		{D7129FA8-2BE1-4CB4-A5CC-35048FEDB5FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7129FA8-2BE1-4CB4-A5CC-35048FEDB5FF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2D145FD9-7344-4892-A815-07302B2F7CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2D145FD9-7344-4892-A815-07302B2F7CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D145FD9-7344-4892-A815-07302B2F7CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D145FD9-7344-4892-A815-07302B2F7CC7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7C24ECE-5F66-4251-A2A3-F7E0D632A6DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7C24ECE-5F66-4251-A2A3-F7E0D632A6DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7C24ECE-5F66-4251-A2A3-F7E0D632A6DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7C24ECE-5F66-4251-A2A3-F7E0D632A6DC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{27EA6C98-AC56-4B77-8CEF-302328231320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27EA6C98-AC56-4B77-8CEF-302328231320}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27EA6C98-AC56-4B77-8CEF-302328231320}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27EA6C98-AC56-4B77-8CEF-302328231320}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
@@ -57,6 +52,5 @@ Global
 		{27EA6C98-AC56-4B77-8CEF-302328231320} = {4CED4C06-3BB0-4495-A92F-4132BD98B565}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2E586CAA-63AF-4104-8DE2-F9D92C93E2FD}
 	EndGlobalSection
 EndGlobal
