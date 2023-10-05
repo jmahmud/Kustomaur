@@ -1,7 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.4.33027.239
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kustomaur.Models", "src\Kustomaur.Models\Kustomaur.Models.csproj", "{9DE7E72A-4AE5-4123-B205-A7360CEF2D30}"
 EndProject
@@ -53,6 +52,5 @@ Global
 		{27EA6C98-AC56-4B77-8CEF-302328231320} = {4CED4C06-3BB0-4495-A92F-4132BD98B565}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {560DEDAB-4F5E-46B4-9B18-1C5275053B31}
 	EndGlobalSection
 EndGlobal
