@@ -9,8 +9,6 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
     public class MonitorChartPart : DashboardPart
     {
         public string _title;
-        private Dictionary<string, List<string>> _filters;
-
         public MonitorChartPart WithTitle(string title)
         {
             _title = title;
@@ -57,12 +55,27 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
         }
 
         //with Filters
-        public MonitorChartPart WithFilters(Dictionary<string, List<string>> filters)
+        private Dictionary<string, List<string>> _filters;
+        public MonitorChartPart WithFilters(ChartInputValueChartFilter filter)
         {
-            _filters = filters;
+            if (_filters == null)
+                _filters = new Dictionary<string, List<string>>();
+
+            if (filter != null && !string.IsNullOrEmpty(filter.Name) && filter.Values != null)
+            {
+                if (_filters.ContainsKey(filter.Name))
+                {
+                    _filters[filter.Name].AddRange(filter.Values);
+                }
+                else
+                {
+                    _filters[filter.Name] = new List<string>(filter.Values);
+                }
+            }
+
             return this;
         }
-
+        
         // resource id
         // resource name
         // resource aggregation type
@@ -115,21 +128,21 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
 
             if (_filters != null && _filters.Count > 0)
             {
-                value.Chart.Options = new ChartOptions
+                value.Chart.Filters = new ChartInputValueChartFilter
                 {
-                    Filters = new List<FilterModel>()
+                    Filters = _filters.Select(filter =>
+                        new FilterModel
+                        {
+                            Name = filter.Key,
+                            Operator = FilterOperator.Equals,
+                            Values = filter.Value
+                        }).ToList()
                 };
-
-                foreach (var filter in _filters)
-                {
-                    var filterModel = new FilterModel
-                    {
-                        Name = filter.Key,
-                        Operator = FilterOperator.Equals, // Set the operator based on your logic
-                        Values = filter.Value
-                    };
-                    value.Chart.Options.Filters.Add(filterModel);
-                }
+            }
+            else
+            {
+                // If no filters specified, set Filters to null or an empty list
+                value.Chart.Filters = null; // or value.Chart.Filters = new ChartInputValueChartFilter { Filters = new List<FilterModel>() };
             }
 
             return chartInput;

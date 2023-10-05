@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using System.Linq;
 using Kustomaur.Dashboard;
 using Kustomaur.Dashboard.DashboardParts;
 using Kustomaur.Dashboard.DashboardParts.Implementations;
 using Kustomaur.Dashboard.DashboardParts.Implementations.SubParts;
 using Kustomaur.Dashboard.Implementation;
+using Kustomaur.Models.Filters;
+using Newtonsoft.Json;
 using Xunit;
 
 namespace Kustomaur.Builder.Tests.DashboardParts
@@ -19,7 +22,7 @@ namespace Kustomaur.Builder.Tests.DashboardParts
             var subscriptionId = "b42aaad0-2122-4826-aa7c-b49250f0c3f9";
             var resourceGroup = "testdashboards";
             var name = "ce043e69-f9f3-4618-bbe2-2a93e769b56d";
-            
+
             // Act
             var dashboard = new DashboardBuilder()
                 .WithName(name)
@@ -31,7 +34,8 @@ namespace Kustomaur.Builder.Tests.DashboardParts
                         {
                             ResourceMetadata = new ChartInputValueChartMetricResourceMetadata()
                             {
-                                Id = $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Web/serverFarms/{name}"
+                                Id =
+                                    $"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Web/serverFarms/{name}"
                             },
                             Name = "GraphName",
                             AggregationType = 4,
@@ -76,11 +80,43 @@ namespace Kustomaur.Builder.Tests.DashboardParts
 
             // Assert
             Assert.Equal(
-                "{\"lenses\":{\"0\":{\"order\":0,\"parts\":{\"0\":{\"position\":{\"x\":0,\"y\":0,\"colSpan\":3,\"rowSpan\":3},\"metadata\":{\"type\":\"Extension/HubsExtension/PartType/MonitorChartPart\",\"inputs\":[{\"name\":\"sharedTimeRange\",\"isOptional\":true},{\"name\":\"options\",\"isOptional\":true,\"value\":{\"chart\":{\"titleKind\":1,\"title\":\"A Title\",\"timespan\":{\"grain\":1,\"showUTCTime\":false,\"relative\":{\"duration\":86400000}},\"grouping\":{\"dimension\":\"Instance\",\"sort\":2,\"top\":2},\"visualization\":{\"chartType\":2,\"legendVisualization\":{\"isVisible\":true,\"position\":2,\"hideSubtitle\":false},\"axisVisualization\":{\"x\":{\"isVisible\":true,\"axisType\":2},\"y\":{\"isVisible\":true,\"axisType\":1}},\"disablePinning\":true},\"metrics\":[{\"resourceMetadata\":{\"id\":\"/subscriptions/b42aaad0-2122-4826-aa7c-b49250f0c3f9/resourceGroups/testdashboards/providers/Microsoft.Web/serverFarms/ce043e69-f9f3-4618-bbe2-2a93e769b56d\"},\"name\":\"GraphName\",\"aggregationType\":4,\"namespace\":\"microsoft.web/serverfarms\",\"metricVisualization\":{\"displayName\":\"A Better Graph Name\"}}]}}}],\"asset\":{\"idInputName\":\"ComponentId\",\"type\":\"ApplicationInsights\"}}}}}},\"metadata\":{\"model\":{\"timeRange\":{\"value\":{\"relative\":{\"duration\":24,\"timeUnit\":1}},\"type\":\"MsPortalFx.Composition.Configuration.ValueTypes.TimeRange\"},\"filters\":{\"value\":{\"MsPortalFx_TimeRange\":{\"model\":{\"format\":\"utc\",\"granularity\":\"auto\",\"relative\":\"24h\"},\"displayCache\":{\"name\":\"UTC Time\",\"value\":\"Past 24 hours\"},\"filteredPartIds\":[]}}},\"filterLocale\":{\"value\":\"en-us\"}}}}",
+                "{\"lenses\":{\"0\":{\"order\":0,\"parts\":{\"0\":{\"position\":{\"x\":0,\"y\":0,\"colSpan\":3,\"rowSpan\":3},\"metadata\":{\"type\":\"Extension/HubsExtension/PartType/MonitorChartPart\",\"inputs\":[{\"name\":\"sharedTimeRange\",\"isOptional\":true},{\"name\":\"options\",\"isOptional\":true,\"value\":{\"chart\":{\"titleKind\":1,\"title\":\"A Title\",\"timespan\":{\"grain\":1,\"showUTCTime\":false,\"relative\":{\"duration\":86400000}},\"grouping\":{\"dimension\":\"Instance\",\"sort\":2,\"top\":2},\"visualization\":{\"chartType\":2,\"legendVisualization\":{\"isVisible\":true,\"position\":2,\"hideSubtitle\":false},\"axisVisualization\":{\"x\":{\"isVisible\":true,\"axisType\":2},\"y\":{\"isVisible\":true,\"axisType\":1}},\"disablePinning\":true},\"metrics\":[{\"resourceMetadata\":{\"id\":\"/subscriptions/b42aaad0-2122-4826-aa7c-b49250f0c3f9/resourceGroups/testdashboards/providers/Microsoft.Web/serverFarms/ce043e69-f9f3-4618-bbe2-2a93e769b56d\"},\"name\":\"GraphName\",\"aggregationType\":4,\"namespace\":\"microsoft.web/serverfarms\",\"metricVisualization\":{\"displayName\":\"A Better Graph Name\"}}],\"filters\":null}}}],\"asset\":{\"idInputName\":\"ComponentId\",\"type\":\"ApplicationInsights\"}}}}}},\"metadata\":{\"model\":{\"timeRange\":{\"value\":{\"relative\":{\"duration\":24,\"timeUnit\":1}},\"type\":\"MsPortalFx.Composition.Configuration.ValueTypes.TimeRange\"},\"filters\":{\"value\":{\"MsPortalFx_TimeRange\":{\"model\":{\"format\":\"utc\",\"granularity\":\"auto\",\"relative\":\"24h\"},\"displayCache\":{\"name\":\"UTC Time\",\"value\":\"Past 24 hours\"},\"filteredPartIds\":[]}}},\"filterLocale\":{\"value\":\"en-us\"}}}}",
                 Generator.Generate(dashboard.Properties));
         }
+
+        [Fact]
+        public void CanCreateMonitorChartPartWithFilters()
+        {
+            // Arrange
+            var subscriptionId = "b42aaad0-2122-4826-aa7c-b49250f0c3f9";
+            var resourceGroup = "testdashboards";
+            var name = "ce043e69-f9f3-4618-bbe2-2a93e769b56d";
+
+            // Act
+            var dashboard = new DashboardBuilder()
+                .WithName(name)
+                .WithBuilder(new DashboardPartsBuilder()
+                    .AddPart(new MonitorChartPart()
+                        .WithTitle("Test Title")
+                        .WithMetric(new ChartInputValueChartMetric())
+                        .WithVisualisation(new ChartInputValueChartVisualisation())
+                        .WithGrouping(new ChartInputValueChartGrouping())
+                        .WithTimespan(new ChartInputValueChartTimespan())
+                        .WithFilters(new ChartInputValueChartFilter
+                        {
+                            Name = "TestFilter",
+                            Operator = FilterOperator.Equals,
+                            Values = new System.Collections.Generic.List<string> { "Value1", "Value2" }
+                        })))
+                .Build();
+
+            //Act
+            Assert.NotNull(dashboard);
+            Assert.Equal(
+                "{\"lenses\":{\"0\":{\"order\":0,\"parts\":{\"0\":{\"position\":{\"x\":0,\"y\":0,\"colSpan\":3,\"rowSpan\":3},\"metadata\":{\"type\":\"Extension/HubsExtension/PartType/MonitorChartPart\",\"inputs\":[{\"name\":\"sharedTimeRange\",\"isOptional\":true},{\"name\":\"options\",\"isOptional\":true,\"value\":{\"chart\":{\"titleKind\":1,\"title\":\"Test Title\",\"timespan\":{\"grain\":1,\"showUTCTime\":true,\"relative\":{\"duration\":86400000}},\"grouping\":{\"dimension\":\"Instance\",\"sort\":2,\"top\":10},\"visualization\":{\"chartType\":2,\"legendVisualization\":{\"isVisible\":true,\"position\":2,\"hideSubtitle\":false},\"axisVisualization\":{\"x\":{\"isVisible\":true,\"axisType\":2},\"y\":{\"isVisible\":true,\"axisType\":1}},\"disablePinning\":true},\"metrics\":[{\"resourceMetadata\":{\"id\":null},\"name\":null,\"aggregationType\":4,\"namespace\":\"microsoft.web/serverfarms\",\"metricVisualization\":{\"displayName\":null}}],\"filters\":{\"name\":\"EntityName\",\"operator\":1,\"values\":[\"Test1, Test2\"],\"filters\":[{\"name\":\"TestFilter\",\"operator\":1,\"values\":[\"Value1\",\"Value2\"]}]}}}}],\"asset\":{\"idInputName\":\"ComponentId\",\"type\":\"ApplicationInsights\"}}}}}},\"metadata\":{\"model\":{\"timeRange\":{\"value\":{\"relative\":{\"duration\":24,\"timeUnit\":1}},\"type\":\"MsPortalFx.Composition.Configuration.ValueTypes.TimeRange\"},\"filters\":{\"value\":{\"MsPortalFx_TimeRange\":{\"model\":{\"format\":\"utc\",\"granularity\":\"auto\",\"relative\":\"24h\"},\"displayCache\":{\"name\":\"UTC Time\",\"value\":\"Past 24 hours\"},\"filteredPartIds\":[]}}},\"filterLocale\":{\"value\":\"en-us\"}}}}",
+                Generator.Generate(dashboard.Properties));
+
+        }
+
     }
-    //TODO: Fix above test as I've added a new "options field"
-    //TODO: Create a new Assertion test with Filters.
-    
 }

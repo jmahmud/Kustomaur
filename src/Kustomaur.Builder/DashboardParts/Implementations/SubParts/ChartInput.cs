@@ -36,6 +36,7 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
             {
                 new ChartInputValueChartMetric()
             };
+            Filters = new ChartInputValueChartFilter();
         }
         public int TitleKind { get; set; }
         
@@ -48,7 +49,9 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
         public ChartInputValueChartVisualisation Visualization { get; set; }
 
         public List<ChartInputValueChartMetric> Metrics { get; set; }
-        public ChartOptions Options { get; set; }
+        
+        public ChartInputValueChartFilter Filters { get; set; }
+        
     }
 
     public class ChartInputValueChartTimespan
@@ -142,6 +145,23 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
         public int AxisType { get; set; }
     }
 
+
+    public class ChartInputValueChartFilter
+    {
+        public string Name { get; set; }
+        public FilterOperator Operator { get; set; }
+        public List<string> Values { get; set; }
+        public List<FilterModel> Filters { get; set; }
+
+        public ChartInputValueChartFilter()
+        {
+            Name = "EntityName";
+            Operator = FilterOperator.Equals;
+            Values = new List<string> { "Test1, Test2" };
+        }
+        
+    }
+    
     public class ChartInputValueChartMetric
     {
         public ChartInputValueChartMetricResourceMetadata ResourceMetadata { get; set; }
