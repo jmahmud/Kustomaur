@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Kustomaur.Models;
+using Kustomaur.Models.Filters;
 
 namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
 {
@@ -47,6 +48,7 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
         public ChartInputValueChartVisualisation Visualization { get; set; }
 
         public List<ChartInputValueChartMetric> Metrics { get; set; }
+        public ChartOptions Options { get; set; }
     }
 
     public class ChartInputValueChartTimespan

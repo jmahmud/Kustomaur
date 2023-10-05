@@ -2,12 +2,15 @@ using System.Collections.Generic;
 using System.Linq;
 using Kustomaur.Dashboard.DashboardParts.Implementations.SubParts;
 using Kustomaur.Models;
+using Kustomaur.Models.Filters;
 
 namespace Kustomaur.Dashboard.DashboardParts.Implementations
 {
     public class MonitorChartPart : DashboardPart
     {
         public string _title;
+        private Dictionary<string, List<string>> _filters;
+
         public MonitorChartPart WithTitle(string title)
         {
             _title = title;
@@ -53,13 +56,19 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             return this;
         }
 
-        
+        //with Filters
+        public MonitorChartPart WithFilters(Dictionary<string, List<string>> filters)
+        {
+            _filters = filters;
+            return this;
+        }
+
         // resource id
         // resource name
         // resource aggregation type
         // resource namespace
         // resource DisplayName
-        
+
         public MonitorChartPart()
         {
             WithRowSpan(3);
@@ -103,7 +112,20 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
 
             if (!string.IsNullOrEmpty(_title))
                 value.Chart.Title = _title;
-            
+
+            if (_filters != null && _filters.Any())
+            {
+                value.Chart.Options = new ChartOptions
+                {
+                    Filters = _filters.Select(filter => new FilterModel
+                    {
+                        Name = filter.Key,
+                        Operator = "equals",
+                        Values = filter.Value
+                    }).ToArray()
+                };
+            }
+
             return chartInput;
         }
     }
