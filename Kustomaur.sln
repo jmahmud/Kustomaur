@@ -1,18 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kustomaur.Models", "src\Kustomaur.Models\Kustomaur.Models.csproj", "{9DE7E72A-4AE5-4123-B205-A7360CEF2D30}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33027.239
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kustomaur.Models", "src\Kustomaur.Models\Kustomaur.Models.csproj", "{9DE7E72A-4AE5-4123-B205-A7360CEF2D30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kustomaur.Models.Tests", "tests\Kustomaur.Models.Tests\Kustomaur.Models.Tests.csproj", "{4544108D-E7F3-498A-917B-90BC5831E26C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kustomaur.Models.Tests", "tests\Kustomaur.Models.Tests\Kustomaur.Models.Tests.csproj", "{4544108D-E7F3-498A-917B-90BC5831E26C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4CED4C06-3BB0-4495-A92F-4132BD98B565}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kustomaur.Builder", "src\Kustomaur.Builder\Kustomaur.Builder.csproj", "{D7129FA8-2BE1-4CB4-A5CC-35048FEDB5FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kustomaur.Builder", "src\Kustomaur.Builder\Kustomaur.Builder.csproj", "{D7129FA8-2BE1-4CB4-A5CC-35048FEDB5FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kustomaur.Builder.Tests", "tests\Kustomaur.Builder.Tests\Kustomaur.Builder.Tests.csproj", "{2D145FD9-7344-4892-A815-07302B2F7CC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kustomaur.Builder.Tests", "tests\Kustomaur.Builder.Tests\Kustomaur.Builder.Tests.csproj", "{2D145FD9-7344-4892-A815-07302B2F7CC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kustomaur.Azure", "src\Kustomaur.Azure\Kustomaur.Azure.csproj", "{D7C24ECE-5F66-4251-A2A3-F7E0D632A6DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kustomaur.Azure", "src\Kustomaur.Azure\Kustomaur.Azure.csproj", "{D7C24ECE-5F66-4251-A2A3-F7E0D632A6DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kustomaur.Azure.Tests", "tests\Kustomaur.Azure.Tests\Kustomaur.Azure.Tests.csproj", "{27EA6C98-AC56-4B77-8CEF-302328231320}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kustomaur.Azure.Tests", "tests\Kustomaur.Azure.Tests\Kustomaur.Azure.Tests.csproj", "{27EA6C98-AC56-4B77-8CEF-302328231320}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,7 +28,6 @@ Global
 		{9DE7E72A-4AE5-4123-B205-A7360CEF2D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DE7E72A-4AE5-4123-B205-A7360CEF2D30}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4544108D-E7F3-498A-917B-90BC5831E26C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4544108D-E7F3-498A-917B-90BC5831E26C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4544108D-E7F3-498A-917B-90BC5831E26C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4544108D-E7F3-498A-917B-90BC5831E26C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7129FA8-2BE1-4CB4-A5CC-35048FEDB5FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -33,21 +35,24 @@ Global
 		{D7129FA8-2BE1-4CB4-A5CC-35048FEDB5FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7129FA8-2BE1-4CB4-A5CC-35048FEDB5FF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2D145FD9-7344-4892-A815-07302B2F7CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2D145FD9-7344-4892-A815-07302B2F7CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D145FD9-7344-4892-A815-07302B2F7CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D145FD9-7344-4892-A815-07302B2F7CC7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7C24ECE-5F66-4251-A2A3-F7E0D632A6DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7C24ECE-5F66-4251-A2A3-F7E0D632A6DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7C24ECE-5F66-4251-A2A3-F7E0D632A6DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7C24ECE-5F66-4251-A2A3-F7E0D632A6DC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{27EA6C98-AC56-4B77-8CEF-302328231320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27EA6C98-AC56-4B77-8CEF-302328231320}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27EA6C98-AC56-4B77-8CEF-302328231320}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27EA6C98-AC56-4B77-8CEF-302328231320}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4544108D-E7F3-498A-917B-90BC5831E26C} = {4CED4C06-3BB0-4495-A92F-4132BD98B565}
 		{2D145FD9-7344-4892-A815-07302B2F7CC7} = {4CED4C06-3BB0-4495-A92F-4132BD98B565}
 		{27EA6C98-AC56-4B77-8CEF-302328231320} = {4CED4C06-3BB0-4495-A92F-4132BD98B565}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {560DEDAB-4F5E-46B4-9B18-1C5275053B31}
 	EndGlobalSection
 EndGlobal
