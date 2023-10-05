@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Kustomaur.Models.Filters;
 using Xunit;
 
@@ -15,7 +12,7 @@ namespace Kustomaur.Builder.Tests.DashboardFilters
         {
             // Arrange
             var name = "EntityName";
-            var filterOperator = "equals";
+            var filterOperator = FilterOperator.Equals;
             var values = new List<string> { "value1", "value2" };
 
             // Act

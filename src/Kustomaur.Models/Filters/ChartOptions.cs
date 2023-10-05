@@ -8,6 +8,6 @@ namespace Kustomaur.Models.Filters
 {
     public class ChartOptions
     {
-        public FilterModel[] Filters { get; set; }
+        public List<FilterModel> Filters { get; set; }
     }
 }

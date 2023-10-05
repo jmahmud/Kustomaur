@@ -101,7 +101,7 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
 
             var value = chartInput.ValueAs<ChartInputValue>();
 
-            if(_grouping != null)
+            if (_grouping != null)
                 value.Chart.Grouping = _grouping;
 
             if (_timespan != null)
@@ -113,17 +113,23 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             if (!string.IsNullOrEmpty(_title))
                 value.Chart.Title = _title;
 
-            if (_filters != null && _filters.Any())
+            if (_filters != null && _filters.Count > 0)
             {
                 value.Chart.Options = new ChartOptions
                 {
-                    Filters = _filters.Select(filter => new FilterModel
+                    Filters = new List<FilterModel>()
+                };
+
+                foreach (var filter in _filters)
+                {
+                    var filterModel = new FilterModel
                     {
                         Name = filter.Key,
-                        Operator = "equals",
+                        Operator = FilterOperator.Equals, // Set the operator based on your logic
                         Values = filter.Value
-                    }).ToArray()
-                };
+                    };
+                    value.Chart.Options.Filters.Add(filterModel);
+                }
             }
 
             return chartInput;
