@@ -1,8 +1,9 @@
-﻿namespace Kustomaur.Models.Filters;
+﻿using System;
+using System.Runtime.Serialization;
+
+namespace Kustomaur.Models.Filters;
 
 public enum FilterOperator
 {
-    Equals = 1,
-    GreaterThan = 2,
-    LessThan = 3
+    equals
 }

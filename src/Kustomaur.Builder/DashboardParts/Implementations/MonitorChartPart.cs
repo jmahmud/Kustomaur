@@ -54,27 +54,15 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             return this;
         }
 
-        //with Filters
-        private Dictionary<string, List<string>> _filters;
-        public MonitorChartPart WithFilters(ChartInputValueChartFilter filter)
+        // with Filters
+        private Dictionary<string, FilterModel> _filter;
+
+        public MonitorChartPart WithFilter(Dictionary<string, FilterModel> filter)
         {
-            if (_filters == null)
-                _filters = new Dictionary<string, List<string>>();
-
-            if (filter != null && !string.IsNullOrEmpty(filter.Name) && filter.Values != null)
-            {
-                if (_filters.ContainsKey(filter.Name))
-                {
-                    _filters[filter.Name].AddRange(filter.Values);
-                }
-                else
-                {
-                    _filters[filter.Name] = new List<string>(filter.Values);
-                }
-            }
-
+            _filter = filter;
             return this;
         }
+
         
         // resource id
         // resource name
@@ -126,23 +114,25 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             if (!string.IsNullOrEmpty(_title))
                 value.Chart.Title = _title;
 
-            if (_filters != null && _filters.Count > 0)
+            if (_filter != null)
             {
-                value.Chart.Filters = new ChartInputValueChartFilter
+                var stringFilterValues = _filter
+                    .SelectMany(filter => filter.Value.Values) 
+                    .ToList();
+
+                if (stringFilterValues != null && stringFilterValues.Any())
                 {
-                    Filters = _filters.Select(filter =>
-                        new FilterModel
-                        {
-                            Name = filter.Key,
-                            Operator = FilterOperator.Equals,
-                            Values = filter.Value
-                        }).ToList()
-                };
+                    var chartInputValueChartFilter = new ChartInputValueChartFilter(stringFilterValues);
+                    value.Chart.Filters = chartInputValueChartFilter;
+                }
+                else
+                {
+                    value.Chart.Filters = new ChartInputValueChartFilter(new List<string>());
+                }
             }
             else
             {
-                // If no filters specified, set Filters to null or an empty list
-                value.Chart.Filters = null; // or value.Chart.Filters = new ChartInputValueChartFilter { Filters = new List<FilterModel>() };
+                value.Chart.Filters = new ChartInputValueChartFilter(new List<string>());
             }
 
             return chartInput;

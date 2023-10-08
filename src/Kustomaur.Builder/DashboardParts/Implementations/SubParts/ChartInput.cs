@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json.Serialization;
 using Kustomaur.Models;
 using Kustomaur.Models.Filters;
@@ -32,27 +33,25 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
             Timespan = new ChartInputValueChartTimespan();
             Grouping = new ChartInputValueChartGrouping();
             Visualization = new ChartInputValueChartVisualisation();
-            Metrics = new List<ChartInputValueChartMetric>()
-            {
-                new ChartInputValueChartMetric()
-            };
-            Filters = new ChartInputValueChartFilter();
+            Metrics = new List<ChartInputValueChartMetric> { new ChartInputValueChartMetric() };
+            Filters = new ChartInputValueChartFilter(new List<String>());
         }
+
         public int TitleKind { get; set; }
-        
+    
         public string Title { get; set; }
 
         public ChartInputValueChartTimespan Timespan { get; set; }
-        
+    
         public ChartInputValueChartGrouping Grouping { get; set; }
-        
+    
         public ChartInputValueChartVisualisation Visualization { get; set; }
 
         public List<ChartInputValueChartMetric> Metrics { get; set; }
-        
+    
         public ChartInputValueChartFilter Filters { get; set; }
-        
     }
+
 
     public class ChartInputValueChartTimespan
     {
@@ -146,21 +145,41 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
     }
 
 
+    public class Filters
+    {
+        public Dictionary<string, FilterModel> EntityName { get; set; }
+    }
+
     public class ChartInputValueChartFilter
     {
-        public string Name { get; set; }
-        public FilterOperator Operator { get; set; }
-        public List<string> Values { get; set; }
-        public List<FilterModel> Filters { get; set; }
+        public Dictionary<string, FilterModel> Filters { get; set; }
 
-        public ChartInputValueChartFilter()
+        public ChartInputValueChartFilter(List<string> userValues)
         {
-            Name = "EntityName";
-            Operator = FilterOperator.Equals;
-            Values = new List<string> { "Test1, Test2" };
+            if (userValues != null && userValues.Any())
+            {
+                Filters = new Dictionary<string, FilterModel>
+                {
+                    {
+                        "model", new FilterModel
+                        {
+                            Operator = FilterOperator.equals.ToString(),
+                            Values = userValues
+                        }
+                    }
+                };
+            }
+            else
+            {
+                Filters = null;
+            }
         }
-        
     }
+
+
+
+
+
     
     public class ChartInputValueChartMetric
     {

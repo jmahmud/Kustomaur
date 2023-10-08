@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Kustomaur.Models.Filters;
+using Kustomaur.Dashboard.DashboardParts.Implementations.SubParts;
 using Xunit;
 
 namespace Kustomaur.Builder.Tests.DashboardFilters
@@ -11,22 +12,21 @@ namespace Kustomaur.Builder.Tests.DashboardFilters
         public void FilterModel_PropertiesAreSetCorrectly()
         {
             // Arrange
-            var name = "EntityName";
-            var filterOperator = FilterOperator.Equals;
+            var filterOperator = FilterOperator.equals.ToString();
             var values = new List<string> { "value1", "value2" };
-
-            // Act
             var filterModel = new FilterModel
             {
-                Name = name,
                 Operator = filterOperator,
                 Values = values
             };
 
+            // Act
+            var actualOperator = Enum.Parse<FilterOperator>(filterModel.Operator);
+            var actualValues = filterModel.Values;
+
             // Assert
-            Assert.Equal(name, filterModel.Name);
-            Assert.Equal(filterOperator, filterModel.Operator);
-            Assert.Equal(values, filterModel.Values);
+            Assert.Equal(filterOperator, actualOperator.ToString());
+            Assert.Equal(values, actualValues);
         }
     }
 }
