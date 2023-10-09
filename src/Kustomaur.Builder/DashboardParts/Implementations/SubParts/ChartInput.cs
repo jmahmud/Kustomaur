@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json.Serialization;
 using Kustomaur.Models;
+using Kustomaur.Models.Filters;
 
 namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
 {
@@ -31,22 +33,33 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
             Timespan = new ChartInputValueChartTimespan();
             Grouping = new ChartInputValueChartGrouping();
             Visualization = new ChartInputValueChartVisualisation();
-            Metrics = new List<ChartInputValueChartMetric>()
-            {
-                new ChartInputValueChartMetric()
-            };
+            Metrics = new List<ChartInputValueChartMetric> { new ChartInputValueChartMetric() };
         }
+
         public int TitleKind { get; set; }
-        
+    
         public string Title { get; set; }
 
         public ChartInputValueChartTimespan Timespan { get; set; }
-        
+    
         public ChartInputValueChartGrouping Grouping { get; set; }
-        
+    
         public ChartInputValueChartVisualisation Visualization { get; set; }
 
         public List<ChartInputValueChartMetric> Metrics { get; set; }
+        
+        public ChartInputValueFilterCollection FilterCollection { get; set; }
+    }
+
+
+    public class ChartInputValueFilterCollection
+    {
+        public List<FilterModel> Filters { get; set; }
+
+        public ChartInputValueFilterCollection(List<FilterModel> filters)
+        {
+            Filters = filters;
+        }
     }
 
     public class ChartInputValueChartTimespan
@@ -140,6 +153,7 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
         public int AxisType { get; set; }
     }
 
+    
     public class ChartInputValueChartMetric
     {
         public ChartInputValueChartMetricResourceMetadata ResourceMetadata { get; set; }

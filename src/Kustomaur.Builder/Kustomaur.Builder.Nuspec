@@ -6,11 +6,11 @@
         <description>Package Description</description>
         <repository url="https://github.com/jmahmud/Kustomaur" />
         <dependencies>
-            <group targetFramework="net5.0" />
+            <group targetFramework="net6.0" />
         </dependencies>
     </metadata>
     <files>
-        <file src="bin\$configuration$\net5.0\Kustomaur.*.dll" target="lib\net5.0" />
+        <file src="bin\$configuration$\net6.0\Kustomaur.*.dll" target="lib\net6.0" />
     </files>
 
 </package>

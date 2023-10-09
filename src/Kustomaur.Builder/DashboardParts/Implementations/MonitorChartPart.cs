@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using Kustomaur.Dashboard.DashboardParts.Implementations.SubParts;
 using Kustomaur.Models;
+using Kustomaur.Models.Filters;
 
 namespace Kustomaur.Dashboard.DashboardParts.Implementations
 {
@@ -53,18 +55,28 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             return this;
         }
 
+        // with Filters
+        private Dictionary<string, FilterModel> _filter;
+
+        public MonitorChartPart WithFilter(FilterModel filter)
+        {
+            _filter.Add(filter.Property, filter);
+            return this;
+        }
+
         
         // resource id
         // resource name
         // resource aggregation type
         // resource namespace
         // resource DisplayName
-        
+
         public MonitorChartPart()
         {
             WithRowSpan(3);
             WithColSpan(3);
             _metrics = new List<ChartInputValueChartMetric>();
+            _filter = new Dictionary<string, FilterModel>();
         }
 
         public override Part GeneratePart()
@@ -92,7 +104,7 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
 
             var value = chartInput.ValueAs<ChartInputValue>();
 
-            if(_grouping != null)
+            if (_grouping != null)
                 value.Chart.Grouping = _grouping;
 
             if (_timespan != null)
@@ -103,7 +115,12 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
 
             if (!string.IsNullOrEmpty(_title))
                 value.Chart.Title = _title;
-            
+
+            if (_filter != null && _filter.Any())
+            {
+                value.Chart.FilterCollection = new ChartInputValueFilterCollection(_filter.Values.ToList());
+            }
+
             return chartInput;
         }
     }
