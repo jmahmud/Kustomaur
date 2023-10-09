@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Kustomaur.Dashboard.DashboardParts.Implementations.SubParts;
 using Kustomaur.Models.Filters;
 using Kustomaur.Models.Serialisation;
@@ -25,6 +26,7 @@ namespace Kustomaur.Dashboard
             serializerOptions.Converters.Add(new JsonStringEnumConverterEx<MsPortalFxTimeRangeModelFormat>());
             serializerOptions.Converters.Add(new JsonStringEnumConverterEx<DimensionsInputValueAggregation>());
             serializerOptions.Converters.Add(new DateTimeJsonConverter());
+            serializerOptions.Converters.Add(new JsonStringEnumConverterEx<FilterOperator>());
             return serializerOptions;
         }
     }

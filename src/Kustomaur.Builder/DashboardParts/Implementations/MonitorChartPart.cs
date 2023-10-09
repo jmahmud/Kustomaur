@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using Kustomaur.Dashboard.DashboardParts.Implementations.SubParts;
 using Kustomaur.Models;
@@ -57,9 +58,9 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
         // with Filters
         private Dictionary<string, FilterModel> _filter;
 
-        public MonitorChartPart WithFilter(Dictionary<string, FilterModel> filter)
+        public MonitorChartPart WithFilter(FilterModel filter)
         {
-            _filter = filter;
+            _filter.Add(filter.Property, filter);
             return this;
         }
 
@@ -75,6 +76,7 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             WithRowSpan(3);
             WithColSpan(3);
             _metrics = new List<ChartInputValueChartMetric>();
+            _filter = new Dictionary<string, FilterModel>();
         }
 
         public override Part GeneratePart()
@@ -114,25 +116,9 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations
             if (!string.IsNullOrEmpty(_title))
                 value.Chart.Title = _title;
 
-            if (_filter != null)
+            if (_filter != null && _filter.Any())
             {
-                var stringFilterValues = _filter
-                    .SelectMany(filter => filter.Value.Values) 
-                    .ToList();
-
-                if (stringFilterValues != null && stringFilterValues.Any())
-                {
-                    var chartInputValueChartFilter = new ChartInputValueChartFilter(stringFilterValues);
-                    value.Chart.Filters = chartInputValueChartFilter;
-                }
-                else
-                {
-                    value.Chart.Filters = new ChartInputValueChartFilter(new List<string>());
-                }
-            }
-            else
-            {
-                value.Chart.Filters = new ChartInputValueChartFilter(new List<string>());
+                value.Chart.FilterCollection = new ChartInputValueFilterCollection(_filter.Values.ToList());
             }
 
             return chartInput;

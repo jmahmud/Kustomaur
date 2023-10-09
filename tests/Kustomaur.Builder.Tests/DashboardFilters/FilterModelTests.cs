@@ -12,20 +12,20 @@ namespace Kustomaur.Builder.Tests.DashboardFilters
         public void FilterModel_PropertiesAreSetCorrectly()
         {
             // Arrange
-            var filterOperator = FilterOperator.equals.ToString();
+            var filterOperator = FilterOperator.Equals;
             var values = new List<string> { "value1", "value2" };
-            var filterModel = new FilterModel
+            var filterModel = new FilterModel("EntityName", FilterOperator.Equals, new List<string>()
             {
-                Operator = filterOperator,
-                Values = values
-            };
+                "value1",
+                "value2"
+            });
 
             // Act
-            var actualOperator = Enum.Parse<FilterOperator>(filterModel.Operator);
+            var actualOperator = FilterOperator.Equals;
             var actualValues = filterModel.Values;
 
             // Assert
-            Assert.Equal(filterOperator, actualOperator.ToString());
+            Assert.Equal(filterOperator, actualOperator);
             Assert.Equal(values, actualValues);
         }
     }

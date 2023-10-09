@@ -8,7 +8,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Configurations>Debug;Release</Configurations>
         <Platforms>linux-x64;win-x64;</Platforms>
-        <PackageVersion>1.2.0</PackageVersion>
+        <PackageVersion>1.2.1</PackageVersion>
         <NuspecFile>Kustomaur.Builder.Nuspec</NuspecFile>
         <NuspecProperties>version=$(PackageVersion);configuration=$(Configuration)</NuspecProperties>
     </PropertyGroup>

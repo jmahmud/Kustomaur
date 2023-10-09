@@ -34,7 +34,6 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
             Grouping = new ChartInputValueChartGrouping();
             Visualization = new ChartInputValueChartVisualisation();
             Metrics = new List<ChartInputValueChartMetric> { new ChartInputValueChartMetric() };
-            Filters = new ChartInputValueChartFilter(new List<String>());
         }
 
         public int TitleKind { get; set; }
@@ -48,10 +47,20 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
         public ChartInputValueChartVisualisation Visualization { get; set; }
 
         public List<ChartInputValueChartMetric> Metrics { get; set; }
-    
-        public ChartInputValueChartFilter Filters { get; set; }
+        
+        public ChartInputValueFilterCollection FilterCollection { get; set; }
     }
 
+
+    public class ChartInputValueFilterCollection
+    {
+        public List<FilterModel> Filters { get; set; }
+
+        public ChartInputValueFilterCollection(List<FilterModel> filters)
+        {
+            Filters = filters;
+        }
+    }
 
     public class ChartInputValueChartTimespan
     {
@@ -143,42 +152,6 @@ namespace Kustomaur.Dashboard.DashboardParts.Implementations.SubParts
         public bool IsVisible { get; set; }
         public int AxisType { get; set; }
     }
-
-
-    public class Filters
-    {
-        public Dictionary<string, FilterModel> EntityName { get; set; }
-    }
-
-    public class ChartInputValueChartFilter
-    {
-        public Dictionary<string, FilterModel> Filters { get; set; }
-
-        public ChartInputValueChartFilter(List<string> userValues)
-        {
-            if (userValues != null && userValues.Any())
-            {
-                Filters = new Dictionary<string, FilterModel>
-                {
-                    {
-                        "model", new FilterModel
-                        {
-                            Operator = FilterOperator.equals.ToString(),
-                            Values = userValues
-                        }
-                    }
-                };
-            }
-            else
-            {
-                Filters = null;
-            }
-        }
-    }
-
-
-
-
 
     
     public class ChartInputValueChartMetric

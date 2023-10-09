@@ -5,5 +5,7 @@ namespace Kustomaur.Models.Filters;
 
 public enum FilterOperator
 {
-    equals
+    Equals = 0,
+    NotEquals = 1,
+    StartsWith = 3
 }
